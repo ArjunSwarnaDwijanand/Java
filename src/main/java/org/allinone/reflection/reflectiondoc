@@ -1,0 +1,170 @@
+What is javabean?
+
+JavaBeans are reusable software components for Java that can be manipulated visually in a builder tool. JavaBeans are classes that encapsulate many objects into a single object (the bean). They are serializable, have a zero-argument constructor, and allow access to properties using getter and setter methods.
+
+What is the difference between POJO and JavaBean?
+
+POJO stands for Plain Old Java Object. It is a Java object that does not have to follow any special conventions or implement any special interfaces. A JavaBean is a Java object that follows the JavaBeans specification. It is a Java object that is serializable, has a zero-argument constructor, and allows access to properties using getter and setter methods.
+
+example of POJO:
+
+public class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+example of JavaBean:
+
+public class Person implements Serializable {
+    private String name;
+    private int age;
+
+    public Person() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+
+What is the difference between JavaBean and EJB?
+
+JavaBean is a reusable software component for Java that can be manipulated visually in a builder tool. EJB (Enterprise JavaBeans) is a server-side component model for Java EE (Enterprise Edition) applications. JavaBeans are used to create reusable components for Java applications. EJBs are used to create server-side components for Java EE applications.
+
+example of JavaBean:
+
+public class Person implements Serializable {
+    private String name;
+    private int age;
+
+    public Person() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+example of EJB:
+
+@Stateless
+public class PersonBean {
+    @PersistenceContext
+    private EntityManager em;
+
+    public void addPerson(Person person) {
+        em.persist(person);
+    }
+
+    public Person getPerson(int id) {
+        return em.find(Person.class, id);
+    }
+
+    public void updatePerson(Person person) {
+        em.merge(person);
+    }
+
+    public void deletePerson(Person person) {
+        em.remove(person);
+    }
+}
+
+
+
+
+What is the reflection?
+
+Reflection is a feature in the Java programming language. It allows an executing Java program to examine or "introspect" upon itself, and manipulate internal properties of the program. For example, it's possible for a Java class to obtain the names of all its members and display them.
+
+What is the use of reflection in Java?
+
+Reflection is commonly used by programs which require the ability to examine or modify the runtime behavior of applications running in the Java virtual machine. This is a relatively advanced feature and should be used only by developers who have a strong grasp of the fundamentals of the language.
+
+What are the advantages of reflection in Java?
+
+The advantages of reflection in Java are:
+
+1. It allows you to inspect classes, interfaces, fields, and methods at runtime, without knowing the names of the classes, methods, etc. at compile time.
+2. It allows you to instantiate new objects, invoke methods, and get/set field values at runtime.
+3. It allows you to analyze and manipulate classes and objects even though you don't have the source code.
+4. It allows you to write generic code that works with classes that have different methods, fields, or superclasses.
+5. It allows you to build tools that can analyze and manipulate classes, for example, IDEs, debuggers, and testing tools.
+
+What are the disadvantages of reflection in Java?
+
+The disadvantages of reflection in Java are:
+
+1. Performance Overhead: Reflection is slower than normal code because it involves types that are resolved at runtime.
+2. Security Restrictions: Reflection requires a runtime permission which may not be granted to your code.
+3. Code Complexity: Reflection can make your code more complex and harder to understand.
+4. Code Maintenance: Reflection can make your code harder to maintain because it is harder to understand and debug.
+5. Code Obfuscation: Reflection can make your code harder to obfuscate because it can expose the names of classes, methods, and fields.
+
+What are the ways to instantiate the Class class?
+
+There are four ways to instantiate the Class class:
+
+1. By using the forName() method of the Class class.
+2. By using the getClass() method of
+3. By using the .class syntax.
+4. By using the getClassLoader() method of the ClassLoader class.
+
+What is the difference between newInstance() and new keyword?
+
+The new keyword is used to create an instance of a class at compile time. newInstance() is used to create an instance of a class at runtime. The new keyword is used to create an instance of a class by calling a constructor. newInstance() is used to create an instance of a class by calling a no-argument constructor.
+
+What is the difference between Class.forName() and ClassLoader.loadClass()?
+
+Class.forName() is used to load the class dynamically at runtime. ClassLoader.loadClass() is used to load the class dynamically
+at runtime. Class.forName() is used to load the class by the fully qualified name. ClassLoader.loadClass() is used to load the class by the class name.
+
+Can you access the private method from outside the class?
+
+Yes, you can access the private method from outside the class using reflection. You can use the getDeclaredMethod() method of the Class class to get the private method and then call the setAccessible() method of the Method class to access the private method.
+

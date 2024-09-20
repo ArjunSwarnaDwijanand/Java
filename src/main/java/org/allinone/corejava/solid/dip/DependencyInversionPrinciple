@@ -1,0 +1,71 @@
+
+DependencyInversionPrinciple
+
+// The Dependency Inversion Principle (DIP) states that high-level modules should not depend on low-level modules. but they should depend on abstractions.
+
+reducing tight coupling between software components.
+
+Over come the problem of tight coupling between software components.
+
+// The Dependency Inversion Principle (DIP) states that high-level modules should not depend on low-level modules. but they should depend on abstractions.
+
+BankCard
+
+public class DependencyInversionPrinciple {
+    public static void main(String[] args) {
+        Switchable bulb = new LightBulb();
+        Switch bulbPowerSwitch = new ElectricPowerSwitch(bulb);
+        bulbPowerSwitch.press();
+        bulbPowerSwitch.press();
+    }
+}
+
+interface Switchable {
+    void turnOn();
+    void turnOff();
+}
+
+class LightBulb implements Switchable {
+    public void turnOn() {
+        System.out.println("LightBulb: Bulb turned on...");
+    }
+
+    public void turnOff() {
+        System.out.println("LightBulb: Bulb turned off...");
+    }
+}
+
+interface Switch {
+    void press();
+}
+
+class ElectricPowerSwitch implements Switch {
+    public Switchable client;
+    public boolean on;
+
+    public ElectricPowerSwitch(Switchable client) {
+        this.client = client;
+        this.on = false;
+    }
+
+    public boolean isOn() {
+        return this.on;
+    }
+
+    public void press() {
+        boolean checkOn = isOn();
+        if (checkOn) {
+            client.turnOff();
+            this.on = false;
+        } else {
+            client.turnOn();
+            this.on = true;
+        }
+    }
+}
+
+// Output
+
+// LightBulb: Bulb turned on...
+// LightBulb: Bulb turned off...
+

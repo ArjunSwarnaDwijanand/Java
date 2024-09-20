@@ -1,0 +1,1580 @@
+
+
+what is Data structure and algorithm?
+
+Data structure is a way of organizing data in a computer so that it can be used effectively. For example, we can store a list of items having the same data-type using the array data structure.
+
+Algorithm is a step-by-step procedure, which defines a set of instructions to be executed in a certain order to get the desired output. Algorithms are generally created independent of underlying languages, i.e. an algorithm can be implemented in more than one programming language.
+
+What is the difference between an array and linked list?
+
+Array and linked list are used to store linear data of similar types, but they both have some differences:
+
+Array:
+
+1. An array is a collection of elements of a similar data type.
+
+2. An array is a fixed size data structure which means it is of fixed length.
+
+3. Memory is assigned during compile time.
+
+4. An array can store primitive data types as well as objects of a class depending on the definition of the array.
+
+5. An array can be multi-dimensional.
+
+example:
+// Array of integers
+int[] arr = new int[5];
+// Array of strings
+String[] names = new String[3];
+
+
+
+Linked List:
+
+1. A linked list is a collection of elements called nodes, where each node is divided into two parts: data part and address part.
+
+2. A linked list is a dynamic data structure which means it can grow or shrink at runtime by allocating and deallocating memory.
+
+3. Memory is assigned during runtime.
+
+4. A linked list can store primitive data types as well as objects of a class depending on the definition of the linked list.
+
+5. A linked list is always single dimensional.
+
+example:
+// Creating a linked list
+
+class Node {
+    int data;
+    Node next;
+}
+
+Node head = new Node();
+head.data = 1;
+
+Node second = new Node();
+second.data = 2;
+
+Node third = new Node();
+third.data = 3;
+
+head.next = second;
+second.next = third;
+
+
+
+What is a stack?
+
+A stack is a linear data structure that follows the Last In First Out (LIFO) principle. It has two main operations: push and pop. The push operation adds an element to the top of the stack, and the pop operation removes an element from the top of the stack.
+
+example:
+// Creating a stack using the Stack class in Java
+
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+
+        System.out.println("Stack: " + stack);
+
+        int top = stack.pop();
+        System.out.println("Popped element: " + top);
+
+        System.out.println("Stack after pop: " + stack);
+    }
+}
+
+Output:
+Stack: [1, 2, 3]
+Popped element: 3
+Stack after pop: [1, 2]
+
+
+What is a queue?
+
+A queue is a linear data structure that follows the First In First Out (FIFO) principle. It has two main operations: enqueue and dequeue. The enqueue operation adds an element to the end of the queue, and the dequeue operation removes an element from the front of the queue.
+
+example:
+
+// Creating a queue using the Queue interface in Java
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Main {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+
+        System.out.println("Queue: " + queue);
+
+        int front = queue.remove();
+        System.out.println("Removed element: " + front);
+
+        System.out.println("Queue after remove: " + queue);
+    }
+}
+
+Output:
+Queue: [1, 2, 3]
+Removed element: 1
+Queue after remove: [2, 3]
+
+What is a linked list?
+
+A linked list is a linear data structure that consists of a sequence of elements, where each element points to the next element in the sequence. It is a dynamic data structure that can grow or shrink at runtime by allocating and deallocating memory.
+
+example:
+// Creating a linked list
+
+What is a tree?
+
+A tree is a non-linear data structure that consists of a collection of nodes connected by edges. Each node has a parent node and zero or more child nodes. The topmost node in a tree is called the root node, and the nodes at the bottom of the tree are called leaf nodes.
+
+Example:
+// Creating a binary tree
+
+What is a binary tree?
+
+A binary tree is a tree data structure in which each node has at most two children, referred to as the left child and the right child. The left child is always less than the parent node, and the right child is always greater than the parent node.
+
+What is a binary search tree?
+
+A binary search tree is a binary tree data structure in which each node has at most two children, referred to as the left child and the right child. The left child is always less than the parent node, and the right child is always greater than the parent node. Additionally, the binary search tree satisfies the binary search property, which states that for each node, all nodes in the left subtree are less than the node, and all nodes in the right subtree are greater than the node.
+example of binary search tree:
+// Creating a binary search tree
+
+What is a balanced binary search tree?
+
+A balanced binary search tree is a binary search tree in which the heights of the left and right subtrees of any node differ by at most one. This ensures that the tree remains balanced and maintains an average height of O(log n), where n is the number of nodes in the tree. Common types of balanced binary search trees include AVL trees, red-black trees, and B-trees.
+
+
+What is a heap?
+
+A heap is a specialized tree-based data structure that satisfies the heap property. In a max heap, for any given node, the value of the node is greater than or equal to the values of its children. In a min heap, for any given node, the value of the node is less than or equal to the values of its children. Heaps are commonly used to implement priority queues.
+ example of heap:
+// Creating a max heap
+
+What is a hash table?
+
+A hash table is a data structure that stores key-value pairs. It uses a hash function to compute an index into an array of buckets or slots, from which the desired value can be found. Hash tables offer fast insertion, deletion, and lookup operations, making them ideal for use in applications that require fast access to data.
+
+What is a graph?
+ example of graph:
+// Creating a graph
+
+A graph is a non-linear data structure that consists of a collection of nodes (vertices) connected by edges. The edges may be directed or undirected, and may have weights assigned to them. Graphs are commonly used to represent relationships between entities in various applications, such as social networks, transportation networks, and computer networks.
+
+What is an algorithm?
+
+An algorithm is a step-by-step procedure or formula for solving a problem. It is a finite sequence of well-defined instructions that can be executed to achieve a certain goal or solve a specific problem. Algorithms are used in computer science to perform calculations, data processing, and automated reasoning tasks.
+
+What is the time complexity of an algorithm?
+
+The time complexity of an algorithm is a measure of the amount of time it takes to run as a function of the size of the input. It is typically expressed using big O notation, which provides an upper bound on the growth rate of the algorithm's running time. Time complexity is used to analyze the efficiency of algorithms and to compare different algorithms for the same problem.
+
+What is the space complexity of an algorithm?
+
+The space complexity of an algorithm is a measure of the amount of memory it requires to run as a function of the size of the input. It is typically expressed using big O notation, which provides an upper bound on the growth rate of the algorithm's memory usage. Space complexity is used to analyze the memory efficiency of algorithms and to compare different algorithms for the same problem.
+
+What is dynamic programming?
+
+Dynamic programming is a method for solving complex problems by breaking them down into simpler subproblems and solving each subproblem only once. The solutions to the subproblems are stored in a table and reused when needed to solve larger subproblems. Dynamic programming is commonly used to solve optimization problems, such as finding the shortest path in a graph or the maximum sum of a subarray.
+
+What is recursion?
+
+Recursion is a programming technique in which a function calls itself in order to solve a problem. Recursion is often used to solve problems that can be broken down into smaller, similar subproblems. The base case of the recursion defines the simplest version of the problem that does not require further recursion. Recursion can be an elegant and concise way to solve certain problems, but it can also be less efficient than iterative solutions.
+
+What is a sorting algorithm?
+
+example of sorting algorithm:
+// Implementing bubble sort
+
+
+A sorting algorithm is an algorithm that puts elements of a list in a certain order. Common sorting algorithms include bubble sort, selection sort, insertion sort, merge sort, quicksort, and heapsort. Sorting algorithms are used to organize data in a specific order, such as numerical or alphabetical order, to facilitate searching and retrieval operations.
+
+What is a searching algorithm?
+
+A searching algorithm is an algorithm that finds the position of a target value within a list of values. Common searching algorithms include linear search, binary search, and hash-based search algorithms. Searching algorithms are used to locate specific elements in a data structure, such as an array or a linked list.
+
+What is a greedy algorithm?
+
+A greedy algorithm is an algorithmic paradigm that follows the problem-solving heuristic of making the locally optimal choice at each stage with the hope of finding a global optimum. Greedy algorithms are often used to solve optimization problems, such as finding the shortest path in a graph or the minimum spanning tree of a graph. Greedy algorithms are simple to implement and efficient for certain types of problems, but they may not always produce the optimal solution.
+
+What is a divide and conquer algorithm?
+
+A divide and conquer algorithm is an algorithmic paradigm that breaks a problem down into smaller subproblems, solves the subproblems independently, and then combines the solutions to the subproblems to solve the original problem. Divide and conquer algorithms are often used to solve problems that can be divided into similar subproblems, such as sorting and searching problems. Examples of divide and conquer algorithms include merge sort, quicksort, and binary search.
+
+What is a backtracking algorithm?
+
+A backtracking algorithm is an algorithmic paradigm that incrementally builds a solution to a problem by exploring all possible choices at each stage and backtracking when a choice leads to a dead end. Backtracking algorithms are often used to solve combinatorial optimization problems, such as the N-queens problem or the subset sum problem. Backtracking algorithms are typically implemented using recursion.
+
+What is a branch and bound algorithm?
+
+A branch and bound algorithm is an algorithmic paradigm that systematically explores the search space of a combinatorial optimization problem by branching into subproblems and bounding the search space based on the current best solution. Branch and bound algorithms are often used to solve optimization problems with discrete decision variables, such as the traveling salesman problem or the knapsack problem. Branch and bound algorithms are typically implemented using a priority queue or a stack.
+
+What is a graph traversal algorithm?
+
+A graph traversal algorithm is an algorithm that visits all the nodes in a graph in a systematic way. Common graph traversal algorithms include depth-first search (DFS) and breadth-first search (BFS). Graph traversal algorithms are used to explore the structure of a graph, such as finding connected components, detecting cycles, or computing shortest paths.
+
+What is a dynamic programming algorithm?
+
+A dynamic programming algorithm is an algorithmic paradigm that solves complex problems by breaking them down into simpler subproblems and storing the solutions to the subproblems in a table. Dynamic programming algorithms are often used to solve optimization problems, such as finding the shortest path in a graph or the maximum sum of a subarray. Dynamic programming algorithms are typically implemented using memoization or tabulation.
+
+
+
+
+
+
+
+
+
+
+
+
+Data Structures
+Data Structures are ways to organize and store data in a computer so that it can be accessed and modified efficiently. Different data structures are suited to different kinds of applications, and some are highly specialized for specific tasks.
+
+Types of Data Structures:
+Primitive Data Structures:
+
+Basic types such as int, float, char, double, etc.
+Non-Primitive Data Structures:
+
+Linear Data Structures: Data is arranged in a sequential manner.
+
+Array: A collection of elements identified by index or key.
+Linked List: A sequence of elements, where each element points to the next.
+Stack: Follows Last In First Out (LIFO) principle.
+Queue: Follows First In First Out (FIFO) principle.
+Non-Linear Data Structures: Data is arranged in a hierarchical manner.
+
+Tree: A hierarchical structure with a root and subtrees of children, represented as a set of linked nodes.
+Graph: Consists of nodes (vertices) and edges connecting them.
+Heap: A specialized tree-based data structure that satisfies the heap property.
+Example: Array
+java
+Copy code
+int[] arr = {1, 2, 3, 4, 5};
+System.out.println(arr[2]); // Outputs 3
+Example: Linked List
+java
+Copy code
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class LinkedList {
+    Node head;
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+    }
+}
+2. Algorithms
+Algorithms are step-by-step procedures or formulas for solving a problem. An algorithm is a sequence of instructions that can be executed to accomplish a specific task.
+
+Characteristics of an Algorithm:
+Input: An algorithm should have 0 or more inputs.
+Output: An algorithm should have 1 or more outputs.
+Definiteness: Every step of the algorithm should be clear and unambiguous.
+Finiteness: The algorithm should have a finite number of steps.
+Efficiency: The algorithm should be optimized in terms of time and space.
+Example: Sorting Algorithm (Bubble Sort)
+Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.
+
+java
+Copy code
+public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j < n-i-1; j++) {
+                if (arr[j] > arr[j+1]) {
+                    // Swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        bubbleSort(arr);
+        System.out.println("Sorted array:");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+    }
+}
+3. Relationship Between Data Structures and Algorithms
+Data Structures provide a way to organize and store data.
+Algorithms manipulate the data within those structures to solve problems.
+For example, in a sorting problem:
+
+An array (data structure) holds the elements.
+A sorting algorithm (like bubble sort) rearranges the elements in the array.
+4. Example: Using Data Structures with Algorithms
+Consider a scenario where you want to find the shortest path between two nodes in a graph:
+
+Data Structure: Use a Graph data structure to represent the nodes and edges.
+Algorithm: Use Dijkstra's algorithm or BFS (Breadth-First Search) to find the shortest path.
+java
+Copy code
+import java.util.*;
+
+class Graph {
+    private Map<String, List<String>> adjList = new HashMap<>();
+
+    public void addEdge(String source, String destination) {
+        adjList.putIfAbsent(source, new ArrayList<>());
+        adjList.get(source).add(destination);
+    }
+
+    public List<String> getNeighbors(String node) {
+        return adjList.getOrDefault(node, new ArrayList<>());
+    }
+}
+
+public class BFSAlgorithm {
+    public static void bfs(Graph graph, String start) {
+        Queue<String> queue = new LinkedList<>();
+        Set<String> visited = new HashSet<>();
+
+        queue.add(start);
+        visited.add(start);
+
+        while (!queue.isEmpty()) {
+            String node = queue.poll();
+            System.out.println("Visited: " + node);
+
+            for (String neighbor : graph.getNeighbors(node)) {
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Graph graph = new Graph();
+        graph.addEdge("A", "B");
+        graph.addEdge("A", "C");
+        graph.addEdge("B", "D");
+        graph.addEdge("C", "D");
+
+        bfs(graph, "A");
+    }
+}
+In this example:
+
+The graph represents the data structure.
+The BFS algorithm is used to traverse the graph.
+Summary:
+Data Structures are used to organize data.
+Algorithms are used to perform operations on the data.
+The combination of the two allows you to efficiently solve problems.
+
+
+How to perform Bubble Sort in Java?
+
+Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass through the list is repeated until the list is sorted.
+
+Here's an example of how to perform Bubble Sort in Java:
+
+java
+Copy code
+
+public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j < n-i-1; j++) {
+                if (arr[j] > arr[j+1]) {
+                    // Swap arr[j] and arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        bubbleSort(arr);
+        System.out.println("Sorted array:");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+    }
+}
+Output:
+Sorted array:
+11 12 22 25 34 64 90
+In this example:
+
+
+The bubbleSort() method implements the Bubble Sort algorithm.
+The main() method creates an array of integers, sorts it using Bubble Sort, and prints the sorted array.
+The output shows the sorted array in ascending order.
+Bubble Sort is not the most efficient sorting algorithm, but it is simple to implement and understand. It is suitable for small datasets or educational purposes.
+
+above code time complexity is O(n^2) and space complexity is O(1).
+
+How to perform Selection Sort in Java?
+
+Selection Sort is a simple sorting algorithm that repeatedly selects the minimum element from an unsorted portion of the array and swaps it with the first unsorted element. The process is repeated until the entire array is sorted.
+
+Here's an example of how to perform Selection Sort in Java:
+
+java
+Copy code
+
+public class SelectionSort {
+    public static void selectionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n-1; i++) {
+            int minIndex = i;
+            for (int j = i+1; j < n; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            // Swap arr[i] and arr[minIndex]
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        selectionSort(arr);
+        System.out.println("Sorted array:");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+    }
+}
+Output:
+Sorted array:
+11 12 22 25 34 64 90
+In this example:
+
+
+The selectionSort() method implements the Selection Sort algorithm.
+The main() method creates an array of integers, sorts it using Selection Sort, and prints the sorted array.
+The output shows the sorted array in ascending order.
+Selection Sort is not the most efficient sorting algorithm, but it is simple to implement and understand. It is suitable for small datasets or educational purposes.
+
+above code time complexity is O(n^2) and space complexity is O(1).
+
+How to perform Insertion Sort in Java?
+
+Insertion Sort is a simple sorting algorithm that builds the final sorted array one element at a time. It takes each element from the unsorted portion of the array and inserts it into its correct position in the sorted portion of the array.
+
+Here's an example of how to perform Insertion Sort in Java:
+
+java
+Copy code
+
+public class InsertionSort {
+    public static void insertionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        insertionSort(arr);
+        System.out.println("Sorted array:");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+Output:
+Sorted array:
+11 12 22 25 34 64 90
+
+In this example:
+
+
+The insertionSort() method implements the Insertion Sort algorithm.
+The main() method creates an array of integers, sorts it using Insertion Sort, and prints the sorted array.
+The output shows the sorted array in ascending order.
+Insertion Sort is not the most efficient sorting algorithm, but it is simple to implement and understand. It is suitable for small datasets or educational purposes.
+
+above code time complexity is O(n^2) and space complexity is O(1).
+
+How to perform Merge Sort in Java?
+
+Merge Sort is a divide-and-conquer sorting algorithm that divides the input array into two halves, recursively sorts the two halves, and then merges the sorted halves. It is an efficient sorting algorithm with a time complexity of O(n log n).
+
+Here's an example of how to perform Merge Sort in Java:
+
+java
+Copy code
+
+public class MergeSort {
+    public static void mergeSort(int[] arr, int l, int r) {
+        if (l < r) {
+            int m = (l + r) / 2;
+            mergeSort(arr, l, m);
+            mergeSort(arr, m + 1, r);
+            merge(arr, l, m, r);
+        }
+    }
+
+    public static void merge(int[] arr, int l, int m, int r) {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+
+        int[] L = new int[n1];
+        int[] R = new int[n2];
+
+        for (int i = 0; i < n1; i++) {
+            L[i] = arr[l + i];
+        }
+        for (int j = 0; j < n2; j++) {
+            R[j] = arr[m + 1 + j];
+        }
+
+        int i = 0, j = 0;
+        int k = l;
+        while (i < n1 && j < n2) {
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                i++;
+            } else {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
+        }
+
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        mergeSort(arr, 0, arr.length - 1);
+        System.out.println("Sorted array:");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+Output:
+Sorted array:
+11 12 22 25 34 64 90
+
+In this example:
+
+
+The mergeSort() method implements the Merge Sort algorithm.
+The merge() method merges two sorted subarrays into a single sorted array.
+The main() method creates an array of integers, sorts it using Merge Sort, and prints the sorted array.
+The output shows the sorted array in ascending order.
+Merge Sort is an efficient sorting algorithm with a time complexity of O(n log n). It is suitable for sorting large datasets.
+
+above code time complexity is O(n log n) and space complexity is O(n).
+
+How to perform Quick Sort in Java?
+
+Quick Sort is a divide-and-conquer sorting algorithm that divides the input array into two partitions, recursively sorts the partitions, and then combines the sorted partitions. It is an efficient sorting algorithm with a time complexity of O(n log n).
+
+Here's an example of how to perform Quick Sort in Java:
+
+java
+Copy code
+
+public class QuickSort {
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pi = partition(arr, low, high);
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    public static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+        return i + 1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22, 11, 90};
+        quickSort(arr, 0, arr.length - 1);
+        System.out.println("Sorted array:");
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+Output:
+Sorted array:
+11 12 22 25 34 64 90
+
+In this example:
+
+
+The quickSort() method implements the Quick Sort algorithm.
+The partition() method partitions the array into two subarrays based on a pivot element.
+The main() method creates an array of integers, sorts it using Quick Sort, and prints the sorted array.
+The output shows the sorted array in ascending order.
+Quick Sort is an efficient sorting algorithm with a time complexity of O(n log n). It is suitable for sorting large datasets.
+
+above code time complexity is O(n log n) and space complexity is O(log n).
+
+How to perform Binary Search in Java?
+
+Binary Search is a search algorithm that finds the position of a target value within a sorted array. It compares the target value to the middle element of the array and eliminates half of the remaining elements each time.
+
+Here's an example of how to perform Binary Search in Java:
+
+java
+Copy code
+
+
+public class BinarySearch {
+    public static int binarySearch(int[] arr, int target) {
+        int low = 0;
+        int high = arr.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (arr[mid] == target) {
+                return mid;
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {11, 12, 22, 25, 34, 64, 90};
+        int target = 22;
+        int result = binarySearch(arr, target);
+        if (result != -1) {
+            System.out.println("Element found at index " + result);
+        } else {
+            System.out.println("Element not found");
+        }
+    }
+}
+
+Output:
+Element found at index 2
+
+In this example:
+
+
+The binarySearch() method implements the Binary Search algorithm.
+The main() method creates a sorted array of integers, searches for a target value using Binary Search, and prints the index of the target value if found.
+The output shows the index of the target value in the array.
+Binary Search is an efficient search algorithm with a time complexity of O(log n). It is suitable for searching in large datasets.
+
+above code time complexity is O(log n) and space complexity is O(1).
+
+How to perform Depth-First Search (DFS) in Java?
+
+Depth-First Search (DFS) is a graph traversal algorithm that explores as far as possible along each branch before backtracking. It is commonly used to search or traverse tree or graph data structures.
+
+Here's an example of how to perform Depth-First Search (DFS) in Java:
+
+java
+Copy code
+
+import java.util.*;
+
+class Graph {
+    private Map<String, List<String>> adjList = new HashMap<>();
+
+    public void addEdge(String source, String destination) {
+        adjList.putIfAbsent(source, new ArrayList<>());
+        adjList.get(source).add(destination);
+    }
+
+    public List<String> getNeighbors(String node) {
+        return adjList.getOrDefault(node, new ArrayList<>());
+    }
+}
+
+public class DepthFirstSearch {
+    public static void dfs(Graph graph, String start) {
+        Set<String> visited = new HashSet<>();
+        dfsHelper(graph, start, visited);
+    }
+
+    private static void dfsHelper(Graph graph, String node, Set<String> visited) {
+        visited.add(node);
+        System.out.println("Visited: " + node);
+
+        for (String neighbor : graph.getNeighbors(node)) {
+            if (!visited.contains(neighbor)) {
+                dfsHelper(graph, neighbor, visited);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Graph graph = new Graph();
+        graph.addEdge("A", "B");
+        graph.addEdge("A", "C");
+        graph.addEdge("B", "D");
+        graph.addEdge("C", "D");
+
+        dfs(graph, "A");
+    }
+}
+
+Output:
+Visited: A
+Visited: B
+Visited: D
+Visited: C
+
+In this example:
+
+
+The Graph class represents a graph data structure with nodes and edges.
+The dfs() method performs Depth-First Search (DFS) starting from a given node.
+The dfsHelper() method is a recursive helper function that explores the graph in a depth-first manner.
+The main() method creates a graph, performs DFS starting from node "A", and prints the visited nodes.
+The output shows the nodes visited during the Depth-First Search traversal.
+Depth-First Search (DFS) is a useful algorithm for exploring or traversing tree or graph data structures. It can be used to find connected components, detect cycles, or compute paths in a graph.
+
+above code time complexity is O(V + E) and space complexity is O(V).
+
+How to perform Breadth-First Search (BFS) in Java?
+
+Breadth-First Search (BFS) is a graph traversal algorithm that explores all the neighboring nodes at the present depth before moving on to the nodes at the next depth level. It is commonly used to search or traverse tree or graph data structures.
+
+Here's an example of how to perform Breadth-First Search (BFS) in Java:
+
+java
+Copy code
+
+import java.util.*;
+
+class Graph {
+    private Map<String, List<String>> adjList = new HashMap<>();
+
+    public void addEdge(String source, String destination) {
+        adjList.putIfAbsent(source, new ArrayList<>());
+        adjList.get(source).add(destination);
+    }
+
+    public List<String> getNeighbors(String node) {
+        return adjList.getOrDefault(node, new ArrayList<>());
+    }
+}
+
+public class BreadthFirstSearch {
+    public static void bfs(Graph graph, String start) {
+        Queue<String> queue = new LinkedList<>();
+        Set<String> visited = new HashSet<>();
+
+        queue.add(start);
+        visited.add(start);
+
+        while (!queue.isEmpty()) {
+            String node = queue.poll();
+            System.out.println("Visited: " + node);
+
+            for (String neighbor : graph.getNeighbors(node)) {
+                if (!visited.contains(neighbor)) {
+                    visited.add(neighbor);
+                    queue.add(neighbor);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Graph graph = new Graph();
+        graph.addEdge("A", "B");
+        graph.addEdge("A", "C");
+        graph.addEdge("B", "D");
+        graph.addEdge("C", "D");
+
+        bfs(graph, "A");
+    }
+}
+
+Output:
+Visited: A
+Visited: B
+Visited: C
+Visited: D
+
+In this example:
+
+
+The Graph class represents a graph data structure with nodes and edges.
+
+The bfs() method performs Breadth-First Search (BFS) starting from a given node.
+
+The main() method creates a graph, performs BFS starting from node "A", and prints the visited nodes.
+
+The output shows the nodes visited during the Breadth-First Search traversal.
+
+Breadth-First Search (BFS) is a useful algorithm for exploring or traversing tree or graph data structures. It can be used to find connected components, detect cycles, or compute paths in a graph.
+
+above code time complexity is O(V + E) and space complexity is O(V).
+
+How to implement a Stack in Java?
+
+A Stack is a linear data structure that follows the Last In First Out (LIFO) principle. It has two main operations: push (adds an element to the top of the stack) and pop (removes an element from the top of the stack).
+
+Here's an example of how to implement a Stack in Java:
+
+java
+Copy code
+
+import java.util.*;
+
+public class StackExample {
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+
+        System.out.println("Stack: " + stack);
+
+        int top = stack.pop();
+        System.out.println("Popped element: " + top);
+
+        System.out.println("Stack after pop: " + stack);
+    }
+}
+
+Output:
+Stack: [1, 2, 3]
+Popped element: 3
+Stack after pop: [1, 2]
+
+In this example:
+
+
+The Stack class from the java.util package is used to implement a stack data structure.
+
+The main() method creates a stack of integers, pushes elements onto the stack, pops an element from the stack, and prints the stack.
+
+The output shows the stack before and after popping an element.
+
+Stacks are commonly used in programming for tasks such as function calls, expression evaluation, and backtracking.
+
+above code time complexity is O(1) for push and pop operations and space complexity is O(n).
+
+How to implement a Queue in Java?
+
+A Queue is a linear data structure that follows the First In First Out (FIFO) principle. It has two main operations: enqueue (adds an element to the end of the queue) and dequeue (removes an element from the front of the queue).
+
+Here's an example of how to implement a Queue in Java:
+
+java
+Copy code
+
+import java.util.*;
+
+public class QueueExample {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+
+        System.out.println("Queue: " + queue);
+
+        int front = queue.remove();
+        System.out.println("Removed element: " + front);
+
+        System.out.println("Queue after remove: " + queue);
+    }
+}
+
+Output:
+Queue: [1, 2, 3]
+Removed element: 1
+Queue after remove: [2, 3]
+
+In this example:
+
+
+The Queue interface from the java.util package is used to implement a queue data structure.
+
+The main() method creates a queue of integers, adds elements to the queue, removes an element from the queue, and prints the queue.
+
+The output shows the queue before and after removing an element.
+
+Queues are commonly used in programming for tasks such as task scheduling, breadth-first search, and resource allocation.
+
+above code time complexity is O(1) for enqueue and dequeue operations and space complexity is O(n).
+
+How to implement a Linked List in Java?
+
+A Linked List is a linear data structure that consists of a sequence of elements, where each element points to the next element in the sequence. It is a dynamic data structure that can grow or shrink at runtime by allocating and deallocating memory.
+
+Here's an example of how to implement a Linked List in Java:
+
+java
+Copy code
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class LinkedList {
+    Node head;
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+    }
+
+    public static void main(String[] args) {
+        LinkedList list = new LinkedList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        Node temp = list.head;
+        while (temp != null) {
+            System.out.println(temp.data);
+            temp = temp.next;
+        }
+    }
+}
+
+Output:
+1
+2
+3
+
+In this example:
+
+
+The Node class represents a node in the linked list with an integer data value and a reference to the next node.
+
+The LinkedList class represents the linked list data structure with a head node and methods to add elements to the list.
+
+The main() method creates a linked list, adds elements to the list, and prints the elements.
+
+Linked Lists are commonly used in programming for tasks such as dynamic memory allocation, implementing stacks and queues, and representing sparse matrices.
+
+above code time complexity is O(n) for adding elements to the linked list and space complexity is O(n).
+
+How to create a Binary Tree in Java?
+
+A Binary Tree is a tree data structure in which each node has at most two children, referred to as the left child and the right child. It is a hierarchical structure with a root node and subtrees of children, represented as a set of linked nodes.
+
+Here's an example of how to create a Binary Tree in Java:
+
+java
+Copy code
+
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+public class BinaryTree {
+    Node root;
+
+    public BinaryTree(int data) {
+        root = new Node(data);
+    }
+
+    public static void main(String[] args) {
+        BinaryTree tree = new BinaryTree(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = new Node(5);
+
+        System.out.println("Binary Tree created successfully!");
+    }
+}
+
+Output:
+Binary Tree created successfully!
+
+In this example:
+
+
+The Node class represents a node in the binary tree with an integer data value and references to the left and right child nodes.
+
+The BinaryTree class represents the binary tree data structure with a root node and methods to create the tree.
+
+The main() method creates a binary tree, adds nodes to the tree, and prints a success message.
+
+Binary Trees are commonly used in programming for tasks such as representing hierarchical data, implementing expression trees, and searching and sorting algorithms.
+
+above code time complexity is O(n) for creating the binary tree and space complexity is O(n).
+
+How to create a Binary Search Tree in Java?
+
+A Binary Search Tree (BST) is a binary tree data structure in which each node has at most two children, referred to as the left child and the right child. The left child is always less than the parent node, and the right child is always greater than the parent node.
+
+Here's an example of how to create a Binary Search Tree in Java:
+
+java
+Copy code
+
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+public class BinarySearchTree {
+    Node root;
+
+    public void insert(int data) {
+        root = insertRec(root, data);
+    }
+
+    private Node insertRec(Node root, int data) {
+        if (root == null) {
+            root = new Node(data);
+            return root;
+        }
+        if (data < root.data) {
+            root.left = insertRec(root.left, data);
+        } else if (data > root.data) {
+            root.right = insertRec(root.right, data);
+        }
+        return root;
+    }
+
+    public static void main(String[] args) {
+        BinarySearchTree tree = new BinarySearchTree();
+        tree.insert(4);
+        tree.insert(2);
+        tree.insert(6);
+        tree.insert(1);
+        tree.insert(3);
+
+        System.out.println("Binary Search Tree created successfully!");
+    }
+}
+
+Output:
+Binary Search Tree created successfully!
+
+In this example:
+
+
+The Node class represents a node in the binary search tree with an integer data value and references to the left and right child nodes.
+
+The BinarySearchTree class represents the binary search tree data structure with a root node and methods to insert nodes into the tree.
+
+The main() method creates a binary search tree, inserts nodes into the tree, and prints a success message.
+
+Binary Search Trees are commonly used in programming for tasks such as searching, sorting, and indexing data.
+
+above code time complexity is O(log n) for inserting nodes into the binary search tree and space complexity is O(n).
+
+How to implement a Graph in Java?
+
+A Graph is a non-linear data structure that consists of a collection of nodes (vertices) connected by edges. It is commonly used to represent relationships between entities in various applications, such as social networks, transportation networks, and computer networks.
+
+
+Here's an example of how to implement a Graph in Java:
+
+java
+Copy code
+
+import java.util.*;
+
+class Graph {
+    private Map<String, List<String>> adjList = new HashMap<>();
+
+    public void addEdge(String source, String destination) {
+        adjList.putIfAbsent(source, new ArrayList<>());
+        adjList.get(source).add(destination);
+    }
+
+    public List<String> getNeighbors(String node) {
+        return adjList.getOrDefault(node, new ArrayList<>());
+    }
+}
+
+public class GraphExample {
+    public static void main(String[] args) {
+        Graph graph = new Graph();
+        graph.addEdge("A", "B");
+        graph.addEdge("A", "C");
+        graph.addEdge("B", "D");
+        graph.addEdge("C", "D");
+
+        System.out.println("Graph created successfully!");
+    }
+}
+
+Output:
+Graph created successfully!
+
+In this example:
+
+
+
+The Graph class represents a graph data structure with nodes and edges.
+
+The addEdge() method adds an edge between two nodes in the graph.
+
+The getNeighbors() method returns the neighbors of a given node in the graph.
+
+The main() method creates a graph, adds edges between nodes, and prints a success message.
+
+Graphs are commonly used in programming for tasks such as representing relationships between entities, modeling networks, and solving optimization problems.
+
+above code time complexity is O(1) for adding edges to the graph and space complexity is O(V + E).
+
+How to implement a Heap in Java?
+
+A Heap is a specialized tree-based data structure that satisfies the heap property. A heap can be a min-heap, where the parent node is less than or equal to its children, or a max-heap, where the parent node is greater than or equal to its children.
+
+Here's an example of how to implement a Min-Heap in Java:
+
+java
+Copy code
+
+import java.util.*;
+
+public class MinHeap {
+    private List<Integer> heap;
+
+    public MinHeap() {
+        heap = new ArrayList<>();
+    }
+
+    public void insert(int data) {
+        heap.add(data);
+        int index = heap.size() - 1;
+        while (index > 0) {
+            int parentIndex = (index - 1) / 2;
+            if (heap.get(parentIndex) > heap.get(index)) {
+                int temp = heap.get(parentIndex);
+                heap.set(parentIndex, heap.get(index));
+                heap.set(index, temp);
+                index = parentIndex;
+            } else {
+                break;
+            }
+        }
+    }
+
+    public int extractMin() {
+        if (heap.isEmpty()) {
+            throw new NoSuchElementException("Heap is empty");
+        }
+        int min = heap.get(0);
+        heap.set(0, heap.get(heap.size() - 1));
+        heap.remove(heap.size() - 1);
+        heapify(0);
+        return min;
+    }
+
+    private void heapify(int index) {
+        int left = 2 * index + 1;
+        int right = 2 * index + 2;
+        int smallest = index;
+        if (left < heap.size() && heap.get(left) < heap.get(smallest)) {
+            smallest = left;
+        }
+        if (right < heap.size() && heap.get(right) < heap.get(smallest)) {
+            smallest = right;
+        }
+        if (smallest != index) {
+            int temp = heap.get(index);
+            heap.set(index, heap.get(smallest));
+            heap.set(smallest, temp);
+            heapify(smallest);
+        }
+    }
+
+    public static void main(String[] args) {
+        MinHeap minHeap = new MinHeap();
+        minHeap.insert(3);
+        minHeap.insert(2);
+        minHeap.insert(1);
+        minHeap.insert(5);
+        minHeap.insert(4);
+
+        System.out.println("Min element extracted: " + minHeap.extractMin());
+    }
+}
+
+Output:
+
+Min element extracted: 1
+
+In this example:
+
+
+The MinHeap class represents a min-heap data structure with methods to insert elements and extract the minimum element.
+
+The insert() method inserts an element into the min-heap and maintains the heap property.
+
+The extractMin() method removes and returns the minimum element from the min-heap.
+
+The heapify() method maintains the heap property by recursively adjusting the heap.
+
+The main() method creates a min-heap, inserts elements into the heap, extracts the minimum element, and prints the result.
+
+Heaps are commonly used in programming for tasks such as priority queues, sorting algorithms, and graph algorithms.
+
+above code time complexity is O(log n) for insert and extractMin operations and space complexity is O(n).
+
+
+Write a program in Java to create a doubly linked list containing n nodes?
+
+A doubly linked list is a linear data structure that consists of a sequence of elements, where each element points to the next element and the previous element in the sequence. It allows traversal in both forward and backward directions.
+
+Here's an example of how to create a doubly linked list containing n nodes in Java:
+
+java
+Copy code
+
+class Node {
+    int data;
+    Node prev;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+public class DoublyLinkedList {
+    Node head;
+    Node tail;
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
+        }
+    }
+
+    public static void main(String[] args) {
+        DoublyLinkedList list = new DoublyLinkedList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+
+        Node temp = list.head;
+        while (temp != null) {
+            System.out.println(temp.data);
+            temp = temp.next;
+        }
+    }
+}
+
+Output:
+1
+2
+3
+
+In this example:
+
+
+The Node class represents a node in the doubly linked list with an integer data value and references to the previous and next nodes.
+
+The DoublyLinkedList class represents the doubly linked list data structure with head and tail nodes and methods to add elements to the list.
+
+The main() method creates a doubly linked list, adds elements to the list, and prints the elements.
+
+Doubly linked lists are commonly used in programming for tasks such as implementing stacks, queues, and memory allocation.
+
+above code time complexity is O(n) for adding elements to the doubly linked list and space complexity is O(n).
+
+How to implement a Hash Table in Java?
+
+A Hash Table is a data structure that stores key-value pairs and provides efficient insertion, deletion, and lookup operations. It uses a hash function to map keys to indices in an array, allowing constant-time access to elements.
+
+Here's an example of how to implement a Hash Table in Java:
+
+java
+Copy code
+
+import java.util.*;
+
+class Entry<K, V> {
+    K key;
+    V value;
+
+    Entry(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+}
+
+public class HashTable<K, V> {
+    private List<Entry<K, V>>[] table;
+    private int capacity;
+    private int size;
+
+    public HashTable(int capacity) {
+        this.capacity = capacity;
+        table = new ArrayList[capacity];
+        size = 0;
+    }
+
+    private int hash(K key) {
+        return key.hashCode() % capacity;
+    }
+
+    public void put(K key, V value) {
+        int index = hash(key);
+        if (table[index] == null) {
+            table[index] = new ArrayList<>();
+        }
+        for (Entry<K, V> entry : table[index]) {
+            if (entry.key.equals(key)) {
+                entry.value = value;
+                return;
+            }
+        }
+        table[index].add(new Entry<>(key, value));
+        size++;
+    }
+
+    public V get(K key) {
+        int index = hash(key);
+        if (table[index] != null) {
+            for (Entry<K, V> entry : table[index]) {
+                if (entry.key.equals(key)) {
+                    return entry.value;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        HashTable<String, Integer> ht = new HashTable<>(10);
+        ht.put("A", 1);
+        ht.put("B", 2);
+        ht.put("C", 3);
+
+        System.out.println("Value for key 'B': " + ht.get("B"));
+    }
+}
+
+Output:
+
+Value for key 'B': 2
+
+In this example:
+
+
+The Entry class represents a key-value pair in the hash table.
+
+The HashTable class represents the hash table data structure with methods to put and get key-value pairs.
+
+The hash() method calculates the hash value for a given key.
+
+The put() method inserts a key-value pair into the hash table.
+
+The get() method retrieves the value associated with a given key from the hash table.
+
+The main() method creates a hash table, inserts key-value pairs, retrieves a value by key, and prints the result.
+
+Hash Tables are commonly used in programming for tasks such as indexing, caching, and implementing associative arrays.
+
+above code time complexity is O(1) for put and get operations and space complexity is O(n).
+
+Write a program in Java to find the maximum and minimum value node from a circular linked list?
+
+A circular linked list is a linked list in which the last node points back to the first node, forming a circular structure. To find the maximum and minimum value node from a circular linked list, you can traverse the list and keep track of the maximum and minimum values encountered.
+
+Here's an example of how to find the maximum and minimum value node from a circular linked list in Java:
+
+java
+Copy code
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class CircularLinkedList {
+    Node head;
+
+    public void add(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            head.next = head;
+        } else {
+            Node temp = head;
+            while (temp.next != head) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+            newNode.next = head;
+        }
+    }
+
+    public void findMaxMin() {
+        if (head == null) {
+            System.out.println("Circular linked list is empty");
+            return;
+        }
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        Node temp = head;
+        do {
+            if (temp.data > max) {
+                max = temp.data;
+            }
+            if (temp.data < min) {
+                min = temp.data;
+            }
+            temp = temp.next;
+        } while (temp != head);
+        System.out.println("Maximum value: " + max);
+        System.out.println("Minimum value: " + min);
+    }
+
+    public static void main(String[] args) {
+        CircularLinkedList list = new CircularLinkedList();
+        list.add(3);
+        list.add(1);
+        list.add(4);
+        list.add(2);
+
+        list.findMaxMin();
+    }
+}
+
+Output:
+Maximum value: 4
+Minimum value: 1
+
+In this example:
+
+
+The Node class represents a node in the circular linked list with an integer data value and a reference to the next node.
+
+The CircularLinkedList class represents the circular linked list data structure with a head node and methods to add elements to the list and find the maximum and minimum values.
+
+The add() method adds an element to the circular linked list.
+
+The findMaxMin() method traverses the circular linked list to find the maximum and minimum values.
+
+The main() method creates a circular linked list, adds elements to the list, finds the maximum and minimum values, and prints the results.
+
+Circular linked lists are commonly used in programming for tasks such as implementing circular buffers, scheduling algorithms, and circular queues.
+
+above code time complexity is O(n) for finding the maximum and minimum value nodes in the circular linked list and space complexity is O(1).
+
+
+

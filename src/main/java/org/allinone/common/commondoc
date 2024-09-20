@@ -1,0 +1,16 @@
+webserver vs application server example?
+
+Web Server: Primarily serves static content and handles HTTP requests.
+Examples: Apache HTTP Server, Nginx, Microsoft IIS.
+
+
+Application Server: Executes business logic and handles dynamic content.
+Examples: Tomcat, JBoss, WebSphere, WebLogic.
+
+Characteristics of Web server:
+Static Content: Primarily designed to deliver static content.
+Request Handling: Handles HTTP requests and responses.
+Performance: Optimized for delivering static files quickly and efficiently.
+
+Application Server: Used for executing business logic, processing user requests, and generating dynamic content.
+                    Middleware Services: Provides additional services like transactions, security, and messaging.

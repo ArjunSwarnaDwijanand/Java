@@ -1,0 +1,484 @@
+what is list in java?
+
+List is an interface in Java that extends Collection interface. It is an ordered collection of objects in which duplicate values can be stored. Since List is an interface, objects cannot be created of the type List. We always need a class that extends this list in order to create an object.
+
+List interface is implemented by classes like ArrayList, LinkedList, Vector, and Stack.
+
+List interface is found in java.util package.
+
+List interface has the following methods:
+
+1. void add(int index, E element): This method is used to insert an element at a specific index in the list.
+
+2. boolean addAll(int index, Collection<? extends E> c): This method is used to insert all elements of a collection c at a specific index in the list.
+
+3. E get(int index): This method is used to get the element at a specific index in the list.
+
+4. E set(int index, E element): This method is used to replace an element at a specific index in the list with the specified element.
+
+5. E remove(int index): This method is used to remove the element at a specific index in the list.
+
+6. int indexOf(Object o): This method is used to get the index of the first occurrence of the specified element in the list.
+
+7. int lastIndexOf(Object o): This method is used to get the index of the last occurrence of the specified element in the list.
+
+8. ListIterator<E> listIterator(): This method is used to get a list iterator over the elements in the list.
+
+9. ListIterator<E> listIterator(int index): This method is used to get a list iterator over the elements in the list, starting at the specified index.
+
+10. List<E> subList(int fromIndex, int toIndex): This method is used to get a view of the portion of the list between the specified fromIndex, inclusive, and toIndex, exclusive.
+
+11. void sort(Comparator<? super E> c): This method is used to sort the elements in the list according to the specified comparator.
+
+12. void replaceAll(UnaryOperator<E> operator): This method is used to replace all elements in the list with the result of applying the specified operator to each element.
+
+13. void removeIf(Predicate<? super E> filter): This method is used to remove all elements from the list that satisfy the specified filter.
+
+14. void forEach(Consumer<? super E> action): This method is used to perform the specified action on each element in the list.
+
+15. Spliterator<E> spliterator(): This method is used to get a spliterator over the elements in the list.
+
+16. void clear(): This method is used to remove all elements from the list.
+
+17. boolean contains(Object o): This method is used to check if the list contains the specified element.
+
+18. boolean containsAll(Collection<?> c): This method is used to check if the list contains all elements of the specified collection.
+
+19. boolean isEmpty(): This method is used to check if the list is empty.
+
+20. int size(): This method is used to get the number of elements in the list.
+
+21. Object[] toArray(): This method is used to get an array containing all the elements in the list.
+
+22. <T> T[] toArray(T[] a): This method is used to get an array containing all the elements in the list, using the specified array if it is large enough.
+
+23. boolean add(E e): This method is used to add the specified element to the end of the list.
+
+24. boolean addAll(Collection<? extends E> c): This method is used to add all elements of a collection c to the end of the list.
+
+25. boolean remove(Object o): This method is used to remove the first occurrence of the specified element from the list.
+
+26. boolean removeAll(Collection<?> c): This method is used to remove all elements from the list that are contained in the specified collection.
+
+27. boolean retainAll(Collection<?> c): This method is used to retain only the elements in the list that are contained in the specified collection.
+
+28. boolean equals(Object o): This method is used to check if the list is equal to the specified object.
+
+29. int hashCode(): This method is used to get the hash code value for the list.
+
+30. Iterator<E> iterator(): This method is used to get an iterator over the elements in the list.
+
+31. boolean containsAll(Collection<?> c): This method is used to check if the list contains all elements of the specified collection.
+
+32. boolean contains(Object o): This method is used to check if the list contains the specified element.
+
+
+what is ArrayList in java?
+
+ArrayList is a class in Java that extends AbstractList and implements the List interface. It is an ordered collection of objects in which duplicate values can be stored. Since ArrayList is a class, objects can be created of the type ArrayList.
+
+ArrayList class is found in java.util package.
+
+ArrayList class has the following constructors:
+
+1. ArrayList(): This constructor is used to create an empty ArrayList with an initial capacity of 10.
+
+2. ArrayList(Collection<? extends E> c): This constructor is used to create an ArrayList containing the elements of the specified collection c.
+
+3. ArrayList(int initialCapacity): This constructor is used to create an empty ArrayList with the specified initial capacity.
+
+what is LinkedList in java?
+
+LinkedList is a class in Java that extends AbstractSequentialList and implements the List interface. It is an ordered collection of objects in which duplicate values can be stored. Since LinkedList is a class, objects can be created of the type LinkedList.
+
+LinkedList class is found in java.util package.
+
+LinkedList class has the following constructors:
+
+1. LinkedList(): This constructor is used to create an empty LinkedList.
+
+2. LinkedList(Collection<? extends E> c): This constructor is used to create a LinkedList containing the elements of the specified collection c.
+
+what is Vector in java?
+
+Vector is a class in Java that extends AbstractList and implements the List interface. It is an ordered collection of objects in which duplicate values can be stored. Since Vector is a class, objects can be created of the type Vector.
+
+Vector class is found in java.util package.
+
+Vector class has the following constructors:
+
+1. Vector(): This constructor is used to create an empty Vector with an initial capacity of 10.
+
+2. Vector(Collection<? extends E> c): This constructor is used to create a Vector containing the elements of the specified collection c.
+
+3. Vector(int initialCapacity): This constructor is used to create an empty Vector with the specified initial capacity.
+
+what is Stack in java?
+
+Stack is a class in Java that extends Vector and implements the List interface. It is a last-in, first-out (LIFO) stack of objects. Since Stack is a class, objects can be created of the type Stack.
+
+Stack class is found in java.util package.
+
+Stack class has the following methods:
+
+1. boolean empty(): This method is used to check if the stack is empty.
+
+2. E peek(): This method is used to get the element at the top of the stack without removing it.
+
+3. E pop(): This method is used to remove and return the element at the top of the stack.
+
+4. E push(E item): This method is used to push an element onto the top of the stack.
+
+5. int search(Object o): This method is used to search for the specified object in the stack and return its position.
+
+what is difference between ArrayList and LinkedList in java?
+
+The main differences between ArrayList and LinkedList in Java are:
+
+1. Implementation: ArrayList is implemented as a resizable array, while LinkedList is implemented as a doubly linked list.
+
+2. Performance: ArrayList provides faster access to elements by index, while LinkedList provides faster insertion and deletion of elements.
+
+3. Memory Usage: ArrayList uses less memory than LinkedList because it does not need to store references to the next and previous elements.
+
+4. Iteration: ArrayList is faster for iteration because it provides random access to elements, while LinkedList is slower because it requires traversing the list from the beginning or end.
+
+5. Insertion and Deletion: ArrayList is slower for insertion and deletion of elements because it requires shifting elements to maintain the order, while LinkedList is faster because it only needs to update the references of the neighboring elements.
+
+6. Random Access: ArrayList provides fast random access to elements by index, while LinkedList requires traversing the list from the beginning or end to access elements.
+
+7. Memory Overhead: ArrayList has less memory overhead than LinkedList because it does not need to store references to the next and previous elements.
+
+Access Time:
+ArrayList: O(1) for get operations.
+LinkedList: O(n) for get operations due to traversal from the start or end.
+Insertion/Deletion:
+ArrayList: O(n) due to shifting elements.
+LinkedList: O(1) when inserting/deleting at the beginning or end.
+
+
+example of ArrayList:
+
+ArrayList<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+example of LinkedList:
+
+LinkedList<Integer> numbers = new LinkedList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+How does ArrayList handle resizing?
+
+ArrayList handles resizing by doubling its capacity when it reaches its maximum capacity. When an element is added to an ArrayList and the current size is equal to the capacity, the ArrayList creates a new array with double the capacity, copies the elements from the old array to the new array, and updates the reference to the new array.
+
+
+
+
+what is difference between Vector and ArrayList in java?
+
+The main differences between Vector and ArrayList in Java are:
+
+1. Synchronization: Vector is synchronized, while ArrayList is not synchronized. This means that Vector is thread-safe and can be accessed by multiple threads concurrently without any issues, while ArrayList is not thread-safe and can lead to data corruption if accessed by multiple threads concurrently.
+
+2. Performance: ArrayList is faster than Vector because it is not synchronized. This means that ArrayList provides better performance for single-threaded applications, while Vector is better suited for multi-threaded applications.
+
+3. Growth: Vector grows by doubling its size when it reaches its capacity, while ArrayList grows by 50% of its size when it reaches its capacity. This means that Vector may waste more memory than ArrayList if it grows too large.
+
+4. Legacy: Vector is a legacy class that has been around since the early days of Java, while ArrayList is a newer class that was introduced in Java 1.2. This means that ArrayList is preferred over Vector for new applications.
+
+5. Methods: Vector provides additional methods that are not available in ArrayList, such as addElement(), elementAt(), and removeElement(). This means that Vector has more functionality than ArrayList.
+
+example of Vector:
+
+Vector<Integer> numbers = new Vector<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+
+
+what is difference between Stack and LinkedList in java?
+
+The main differences between Stack and LinkedList in Java are:
+
+1. Implementation: Stack is implemented as a subclass of Vector, while LinkedList is implemented as a doubly linked list.
+
+2. Performance: Stack provides last-in, first-out (LIFO) access to elements, while LinkedList provides fast insertion and deletion of elements.
+
+3. Memory Usage: Stack uses more memory than LinkedList because it is implemented as a subclass of Vector, which is a resizable array.
+
+4. Methods: Stack provides additional methods that are not available in LinkedList, such as push(), pop(), and peek(). This means that Stack has more functionality than LinkedList.
+
+5. Usage: Stack is used for implementing stack data structures, while LinkedList is used for implementing linked list data structures.
+
+example of Stack:
+
+Stack<Integer> numbers = new Stack<>();
+numbers.push(1);
+numbers.push(2);
+numbers.push(3);
+numbers.push(4);
+numbers.push(5);
+
+example of LinkedList:
+
+LinkedList<Integer> numbers = new LinkedList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+What is the difference between Iterator and ListIterator?
+
+The main differences between Iterator and ListIterator in Java are:
+
+1. Interface: Iterator is an interface that provides a way to iterate over a collection, while ListIterator is an interface that provides a way to iterate over a list.
+
+2. Collection Type: Iterator can be used to iterate over any collection, while ListIterator can only be used to iterate over lists.
+
+3. Direction: Iterator can only iterate in the forward direction, while ListIterator can iterate in both the forward and backward directions.
+
+4. Methods: Iterator provides methods such as hasNext(), next(), and remove(), while ListIterator provides additional methods such as hasPrevious(), previous(), add(), and set().
+
+5. Usage: Iterator is used for iterating over collections such as ArrayList, LinkedList, and HashSet, while ListIterator is used for iterating over lists such as ArrayList and LinkedList.
+
+example of Iterator:
+
+List<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+Iterator<Integer> iterator = numbers.iterator();
+while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+
+example of ListIterator:
+
+List<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+ListIterator<Integer> listIterator = numbers.listIterator();
+while (listIterator.hasNext()) {
+    System.out.println(listIterator.next());
+}
+
+while (listIterator.hasPrevious()) {
+    System.out.println(listIterator.previous());
+}
+
+What is the difference between Iterator and Enumeration?
+
+The main differences between Iterator and Enumeration in Java are:
+
+1. Interface: Iterator is an interface introduced in Java 1.2, while Enumeration is an interface introduced in Java 1.0.
+
+2. Collection Type: Iterator can be used to iterate over any collection, while Enumeration can only be used to iterate over legacy collections such as Vector and Hashtable.
+
+3. Methods: Iterator provides methods such as hasNext(), next(), and remove(), while Enumeration provides methods such as hasMoreElements() and nextElement().
+4. Direction: Iterator can only iterate in the forward direction, while Enumeration can only iterate in the forward direction.
+
+5. Usage: Iterator is used for iterating over collections such as ArrayList, LinkedList, and HashSet, while Enumeration is used for iterating over legacy collections such as Vector and Hashtable.
+
+example of Iterator:
+
+List<Integer> numbers = new ArrayList<>();
+
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+Iterator<Integer> iterator = numbers.iterator();
+while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+
+example of Enumeration:
+
+Vector<Integer> numbers = new Vector<>();
+
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+Enumeration<Integer> enumeration = numbers.elements();
+while (enumeration.hasMoreElements()) {
+    System.out.println(enumeration.nextElement());
+}
+
+What is the difference between Iterator and Spliterator?
+
+The main differences between Iterator and Spliterator in Java are:
+
+1. Interface: Iterator is an interface introduced in Java 1.2, while Spliterator is an interface introduced in Java 8.
+
+2. Collection Type: Iterator can be used to iterate over any collection, while Spliterator can be used to iterate over collections that support parallel processing.
+
+3. Methods: Iterator provides methods such as hasNext(), next(), and remove(), while Spliterator provides methods such as tryAdvance(), trySplit(), and characteristics().
+
+4. Direction: Iterator can only iterate in the forward direction, while Spliterator can iterate in both the forward and backward directions.
+
+5. Usage: Iterator is used for iterating over collections such as ArrayList, LinkedList, and HashSet, while Spliterator is used for iterating over collections that support parallel processing.
+
+example of Iterator:
+
+List<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+
+Iterator<Integer> iterator = numbers.iterator();
+
+while (iterator.hasNext()) {
+    System.out.println(iterator.next());
+}
+
+example of Spliterator:
+
+List<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+
+Spliterator<Integer> spliterator = numbers.spliterator();
+
+spliterator.forEachRemaining(System.out::println);
+
+What is the difference between List and Set?
+
+The main differences between List and Set in Java are:
+
+1. Duplicate Elements: List allows duplicate elements, while Set does not allow duplicate elements.
+
+2. Order: List Maintains insertion order., while Set does not maintain any order.
+
+3. Implementation: List is implemented by classes such as ArrayList, LinkedList, and Vector, while Set is implemented by classes such as HashSet, LinkedHashSet, and TreeSet.
+
+4. Methods: List provides methods such as get(), set(), and add(), while Set provides methods such as add() and contains().
+
+5. Usage: List is used when you need to maintain the order of elements and allow duplicates, while Set is used when you need to ensure that elements are unique and do not care about the order.
+
+example of List:
+
+List<Integer> numbers = new ArrayList<>();
+
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+example of Set:
+
+Set<Integer> numbers = new HashSet<>();
+
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+How do you remove elements from a List while iterating it?
+
+To remove elements from a List while iterating, use the Iterator's remove method instead of the List's remove method to avoid ConcurrentModificationException
+
+List<String> list = new ArrayList<>(Arrays.asList("a", "b", "c"));
+Iterator<String> iterator = list.iterator();
+while (iterator.hasNext()) {
+    String element = iterator.next();
+    if (element.equals("b")) {
+        iterator.remove();
+    }
+}
+
+How to convert ArrayList to Array and Array to ArrayList?
+
+To convert an ArrayList to an array, use the toArray method of the ArrayList class. To convert an array to an ArrayList, use the asList method of the Arrays class.
+
+ArrayList<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+
+// Convert ArrayList to Array
+Integer[] array = numbers.toArray(new Integer[0]);
+
+// Convert Array to ArrayList
+List<Integer> list = Arrays.asList(array);
+
+What is the difference between the length of an Array and size of ArrayList?
+
+The main differences between the length of an Array and the size of an ArrayList in Java are:
+
+1. Array: The length of an array is fixed and cannot be changed once it is created. The length of an array is determined by the number of elements it can hold.
+
+2. ArrayList: The size of an ArrayList can change dynamically as elements are added or removed from the list. The size of an ArrayList is the number of elements it currently contains.
+
+3. Access: The length of an array is accessed using the length property, while the size of an ArrayList is accessed using the size() method.
+
+example of Array:
+
+int[] numbers = new int[5];
+int length = numbers.length;
+
+example of ArrayList:
+
+ArrayList<Integer> numbers = new ArrayList<>();
+
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+
+int size = numbers.size();
+
+How to make Java ArrayList Read-Only?
+
+To make a Java ArrayList read-only, use the Collections.unmodifiableList method to create an unmodifiable view of the ArrayList.
+
+ArrayList<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+
+List<Integer> readOnlyList = Collections.unmodifiableList(numbers);
+
+readOnlyList.add(4); // This will throw UnsupportedOperationException
+
+How to remove duplicates from ArrayList?
+
+To remove duplicates from an ArrayList, use a Set to store unique elements and then create a new ArrayList from the Set.
+
+ArrayList<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(1);
+numbers.add(2);
+
+Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+ArrayList<Integer> uniqueList = new ArrayList<>(uniqueNumbers);
+
+System.out.println(uniqueList); // Output: [1, 2, 3]
+

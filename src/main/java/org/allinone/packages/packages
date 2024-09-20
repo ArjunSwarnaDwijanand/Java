@@ -1,0 +1,62 @@
+What is the package?
+A package is a namespace that organizes a set of related classes and interfaces. Conceptually you can think of packages as being similar to different folders on your computer. You might keep HTML pages in one folder, images in another, and scripts or applications in yet another. Because software written in the Java programming language can be composed of hundreds or thousands of individual classes, it makes sense to keep things organized by placing related classes and interfaces into packages.
+
+Packages make large software projects easier to manage. For example, when your software project grows to the point where you have more than a few dozen classes, placing related classes into packages makes it easier to locate the classes you need. Another advantage of using packages is that they help you to avoid name conflicts. For example, you can have a class named List in one package and another class with the same name in another package.
+
+The Java platform provides an enormous class library (a set of packages) suitable for use in your own applications. This library is known as the "Application Programming Interface", or "API" for short. Its packages represent the tasks most commonly associated with general-purpose programming. For example, a package defines a set of classes and interfaces that describe how to perform basic tasks such as I/O, networking
+
+The Java platform is designed from the ground up to support a large number of users. To make it easier for you to organize and manage your code, the Java platform provides a mechanism for grouping related classes and interfaces into packages.
+
+What are the advantages of defining packages in Java?
+
+1. Packages help to organize your classes and interfaces in a better way.
+2. Packages provide access protection.
+3. Packages provide naming collision resolution.
+4. Packages provide controlled access.
+5. Packages provide hidden classes.
+6. Packages provide better performance.
+7. Packages can be considered as data encapsulation (or data-hiding).
+
+What are the types of packages in Java?
+
+There are two types of packages in Java:
+
+1. Built-in Packages (packages from the Java API)
+2. User-defined Packages (create your own packages)
+
+What is a built-in package in Java?
+
+Built-in packages are the packages from the Java API. The packages from the Java API are used to perform different tasks. For example, the java.lang package contains classes that are fundamental to the design of the Java programming language. The java.io package contains classes for system input and output through data streams, serialization, and the file system. These packages (java.lang, java.io) are known as built-in packages.
+
+e.g. java.lang, java.io, java.util, java.net, java.awt, javax.swing, javax.servlet, javax.xml.bind, javax.xml.ws, etc.
+
+What is a user-defined package in Java?
+
+User-defined packages are the packages that you create in Java. User-defined packages are created to categorize your classes and interfaces. For example, you can create a package named com.example and put all your classes and interfaces in that package.
+
+e.g. com.example, org.allinone, org.example, org.mypackage, org.mypackage.myproject, etc.
+
+How to create a package in Java?
+
+To create a package in Java, you need to put a package statement at the top of the file. The package statement should be the first statement in the Java source file. The syntax of the package statement is given below.
+
+
+How can we access some class in another class in Java?
+
+To access a class in another class, you need to import the package of that class. You can import the package using the import keyword. The syntax of the import statement is given below.
+
+import package.name.ClassName;
+
+For example, if you want to access the List class in the java
+package, you need to import the java.util package as shown below.
+
+Do I need to import java.lang package any time? Why?
+
+No, you don't need to import the java.lang package. The classes from the java.lang package are automatically imported by the Java compiler. The java.lang package is imported by default and is available to all Java programs.
+
+Can I import same package/class twice? Will the JVM load the package twice at runtime?
+
+No, you cannot import the same package or class twice. Once a package is imported, it is available to the entire source file. If you import the same package or class twice, the compiler will ignore the second import statement. The JVM will not load the package or class twice at runtime.
+
+
+

@@ -1,0 +1,8 @@
+InterfaceSegregationPrinciple
+
+The principle states that a client should not be forced to implement an interface that it does not use.
+This principle is about the design of interfaces.
+It is about how to split a big interface into smaller interfaces so that a client does not have to implement methods it does not use.
+
+The goal of the interface segregation principle is similar to the single responsibility principle.
+

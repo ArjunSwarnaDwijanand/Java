@@ -1,0 +1,69 @@
+What is the Collection framework in Java?
+The Collection framework is a unified architecture for representing and manipulating collections. It is a set of interfaces and classes that provide a standard way to represent collections. The Collection framework includes the following core interfaces:
+
+1. Collection: The root interface in the Collection hierarchy. It represents a group of objects known as elements.
+2. List: An ordered collection that allows duplicate elements.
+3. Set: A collection that does not allow duplicate elements.
+4. Map: A collection that maps keys to values.
+
+The Collection framework also includes several classes that implement these interfaces, such as ArrayList, LinkedList, HashSet, and HashMap.
+
+What are the main differences between array and collection?
+
+The main differences between arrays and collections are:
+
+1. Arrays are fixed in size, while collections can grow and shrink dynamically.
+2. Arrays can hold primitive data types, while collections can only hold objects.
+3. Arrays can be multidimensional, while collections are typically one-dimensional.
+4. Arrays are more efficient in terms of memory and performance, while collections are more flexible and easier to work with.
+
+example of array:
+
+int[] numbers = new int[5];
+numbers[0] = 1;
+numbers[1] = 2;
+numbers[2] = 3;
+numbers[3] = 4;
+numbers[4] = 5;
+
+example of collection:
+
+List<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(4);
+numbers.add(5);
+
+ Explain various interfaces used in Collection framework?
+
+The Collection framework in Java includes several core interfaces that represent different types of collections. Some of the main interfaces used in the Collection framework are:
+
+1. Collection: The root interface in the Collection hierarchy. It represents a group of objects known as elements.
+2. List: An ordered collection that allows duplicate elements. It extends the Collection interface and provides methods for accessing elements by index.
+3. Set: A collection that does not allow duplicate elements. It extends the Collection interface and provides methods for adding and removing elements.
+4. Map: A collection that maps keys to values. It is not a subtype of the Collection interface, but it is an important part of the Collection framework. It provides methods for adding, removing, and accessing key-value pairs.
+
+Other important interfaces in the Collection framework include Queue, Deque, and Iterator.
+
+what is the difference between collection and collections?
+
+The Collection interface is the root interface in the Collection framework. It represents a group of objects known as elements. The Collections class is a utility class in the Java Collections framework that contains static methods for working with collections. It provides methods for sorting, searching, and manipulating collections.
+
+The main difference between Collection and Collections is that Collection is an interface that represents a group of objects, while Collections is a utility class that provides static methods for working with collections.
+
+example of Collection interface:
+
+Collection<String> names = new ArrayList<>();
+
+example of Collections class:
+
+List<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+Collections.sort(numbers);
+
+
+
+

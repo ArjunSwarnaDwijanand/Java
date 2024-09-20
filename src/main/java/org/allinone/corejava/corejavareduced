@@ -1,0 +1,72 @@
+What is Java ?
+
+Java is object oriented programming language.
+It is a high-level programming language developed by Sun Microsystems.
+It was first released in 1995. Java is a platform-independent language.
+It is used to develop various applications like web applications, desktop applications, mobile applications, games, etc.
+Java is widely used in the software industry.
+
+What are the features of Java?
+
+Simple
+Object-Oriented
+Platform-Independent
+Secure
+Robust
+Multithreaded
+High Performance
+Distributed
+
+What is the difference between JVM, JRE, JDK?
+
+JVM (Java Virtual Machine) is an abstract machine that provides a runtime environment in which Java bytecode can be executed.
+
+JVM = Class Loader + Byte Code Verifier + Interpreter + JIT Compiler
+
+JRE (Java Runtime Environment) is a software package that provides the Java runtime environment and libraries required to run Java applications.
+JRE = JVM + Java Packages Classes(like util, math, lang, awt, swing etc)
+
+JDK (Java Development Kit) is a software development kit that provides the tools and libraries necessary for developing Java applications.
+JDK = JRE + Development Tools (like compiler, debugger, etc)
+
+JVMs are available for many hardware and software platforms (so JVM is platform dependent).
+
+What is JIT?
+
+JIT stands for Just-In-Time compilation. It is used by the JVM to improve the performance of Java programs.
+JIT compiles the bytecode into native machine code at runtime, which can be executed directly by the CPU.
+
+
+
+What is ClassLoader in Java?
+
+ClassLoader is a subsystem of JVM that is used to load classes and interfaces. It is a part of the Java Runtime Environment (JRE).
+ClassLoader is responsible for loading Java classes during runtime dynamically to the JVM.
+
+Types of ClassLoader in Java:
+
+Bootstrap ClassLoader: It is the parent of all class loaders and loads classes from the bootstrap classpath.
+Extension ClassLoader: It is the child of the Bootstrap ClassLoader and loads classes from the extension classpath.
+System/Application ClassLoader: It is the child of the Extension ClassLoader and loads classes from the application classpath.
+Custom ClassLoader: It is a user-defined class loader that loads classes from a custom location.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

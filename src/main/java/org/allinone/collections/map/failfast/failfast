@@ -1,0 +1,8 @@
+
+what is fail-fast in java?
+
+// Q5. What is the difference between fail-fast and fail-safe iterators in Java?
+
+// Ans. Fail-fast iterators throw ConcurrentModificationException if the collection is modified while iterating over it. Fail-safe iterators do not throw ConcurrentModificationException if the collection is modified while iterating over it.
+
+

@@ -1,0 +1,249 @@
+What is Map in java?
+
+Map is an interface , it is used to store the elements in the form of key and value pair.
+
+Hashmap, LinkedHashMap, TreeMap, Hashtable, ConcurrentHashMap are the implementation classes of Map interface.
+
+HashMap is the implementation class of Map interface.
+HashMap is used to store the elements in the form of key and value pair.
+HashMap allows only one null key and multiple null values.
+HashMap stores key, value pairs and it does not allow duplicate keys. If the key is duplicate then the old key is replaced with the new value.
+HashMap is not synchronized.
+HashMap is not thread safe.
+HashMap is fail-fast in nature.
+HashMap is faster.
+HashMap implements Buckets and Linked List.
+HashMap is no guarantee order of elements.
+HashMap extends AbstractMap class.
+
+LinkedHashMap is the implementation class of Map interface.
+LinkedHashMap is used to store the elements in the form of key and value pair.
+LinkedHashMap allows only one null key and multiple null values.
+LinkedHashMap stores key, value pairs and it does not allow duplicate keys. If the key is duplicate then the old key is replaced with the new value.
+LinkedHashMap is not synchronized.
+LinkedHashMap is not thread safe.
+LinkedHashMap is fail-fast in nature.
+LinkedHashMap is slower than HashMap.
+LinkedHashMap implements Buckets, Linked List and Doubly Linked List.
+LinkedHashMap maintains the insertion order of elements.
+LinkedHashMap extends HashMap class.
+
+TreeMap is the implementation class of Map interface.
+TreeMap is used to store the elements in the form of key and value pair.
+TreeMap does not allow null key but it allows multiple null values.
+TreeMap stores key, value pairs and it does not allow duplicate keys. If the key is duplicate then the old key is replaced with the new value.
+TreeMap is not synchronized.
+TreeMap is not thread safe.
+TreeMap is fail-fast in nature.
+TreeMap is slower than HashMap.
+TreeMap implements Red-Black Tree.
+TreeMap maintains the ascending order of elements.
+TreeMap extends AbstractMap class.
+
+Hashtable is the implementation class of Map interface.
+Hashtable is used to store the elements in the form of key and value pair.
+Hashtable does not allow null key and null values.
+Hashtable stores key, value pairs and it does not allow duplicate keys. If the key is duplicate then the old key is replaced with the new value.
+Hashtable is synchronized.
+Hashtable is thread safe.
+Hashtable is fail-safe in nature.
+Hashtable is slower than HashMap.
+Hashtable implements Buckets and Linked List.
+Hashtable is no guarantee order of elements.
+Hashtable extends Dictionary class.
+
+ConcurrentHashMap is the implementation class of Map interface.
+ConcurrentHashMap is used to store the elements in the form of key and value pair.
+ConcurrentHashMap allows only one null key and multiple null values.
+ConcurrentHashMap stores key, value pairs and it does not allow duplicate keys. If the key is duplicate then the old key is replaced with the new value.
+ConcurrentHashMap is synchronized.
+ConcurrentHashMap is thread safe.
+ConcurrentHashMap is fail-safe in nature.
+ConcurrentHashMap is faster than Hashtable.
+ConcurrentHashMap implements Buckets and Linked List.
+ConcurrentHashMap is no guarantee order of elements.
+ConcurrentHashMap extends AbstractMap class.
+
+example:
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapExample {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(1, "One");
+        map.put(2, "Two");
+        map.put(3, "Three");
+        map.put(4, "Four");
+        map.put(5, "Five");
+
+        System.out.println("Map: " + map);
+        System.out.println("Size: " + map.size());
+        System.out.println("Contains key 3: " + map.containsKey(3));
+        System.out.println("Contains value 'Four': " + map.containsValue("Four"));
+        System.out.println("Value for key 2: " + map.get(2));
+        System.out.println("Remove key 4: " + map.remove(4));
+        System.out.println("Map: " + map);
+    }
+}
+
+Output:
+
+Map: {1=One, 2=Two, 3=Three, 4=Four, 5=Five}
+Size: 5
+Contains key 3: true
+Contains value 'Four': true
+Value for key 2: Two
+Remove key 4: Four
+Map: {1=One, 2=Two, 3=Three, 5=Five}
+
+
+example:
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class LinkedHashMapExample {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new LinkedHashMap<>();
+        map.put(1, "One");
+        map.put(2, "Two");
+        map.put(3, "Three");
+        map.put(4, "Four");
+        map.put(5, "Five");
+
+        System.out.println("Map: " + map);
+        System.out.println("Size: " + map.size());
+        System.out.println("Contains key 3: " + map.containsKey(3));
+        System.out.println("Contains value 'Four': " + map.containsValue("Four"));
+        System.out.println("Value for key 2: " + map.get(2));
+        System.out.println("Remove key 4: " + map.remove(4));
+        System.out.println("Map: " + map);
+    }
+}
+
+Output:
+
+Map: {1=One, 2=Two, 3=Three, 4=Four, 5=Five}
+Size: 5
+Contains key 3: true
+Contains value 'Four': true
+Value for key 2: Two
+Remove key 4: Four
+Map: {1=One, 2=Two, 3=Three, 5=Five}
+
+
+example:
+
+import java.util.TreeMap;
+import java.util.Map;
+
+public class TreeMapExample {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new TreeMap<>();
+        map.put(1, "One");
+        map.put(2, "Two");
+        map.put(3, "Three");
+        map.put(4, "Four");
+        map.put(5, "Five");
+
+        System.out.println("Map: " + map);
+        System.out.println("Size: " + map.size());
+        System.out.println("Contains key 3: " + map.containsKey(3));
+        System.out.println("Contains value 'Four': " + map.containsValue("Four"));
+        System.out.println("Value for key 2: " + map.get(2));
+        System.out.println("Remove key 4: " + map.remove(4));
+        System.out.println("Map: " + map);
+    }
+}
+
+Output:
+
+Map: {1=One, 2=Two, 3=Three, 4=Four, 5=Five}
+Size: 5
+Contains key 3: true
+Contains value 'Four': true
+Value for key 2: Two
+Remove key 4: Four
+Map: {1=One, 2=Two, 3=Three, 5=Five}
+
+
+example:
+
+import java.util.Hashtable;
+import java.util.Map;
+
+public class HashtableExample {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new Hashtable<>();
+        map.put(1, "One");
+        map.put(2, "Two");
+        map.put(3, "Three");
+        map.put(4, "Four");
+        map.put(5, "Five");
+
+        System.out.println("Map: " + map);
+        System.out.println("Size: " + map.size());
+        System.out.println("Contains key 3: " + map.containsKey(3));
+        System.out.println("Contains value 'Four': " + map.containsValue("Four"));
+        System.out.println("Value for key 2: " + map.get(2));
+        System.out.println("Remove key 4: " + map.remove(4));
+        System.out.println("Map: " + map);
+    }
+}
+
+Output:
+
+Map: {5=Five, 4=Four, 3=Three, 2=Two, 1=One}
+Size: 5
+Contains key 3: true
+Contains value 'Four': true
+Value for key 2: Two
+Remove key 4: Four
+Map: {5=Five, 3=Three, 2=Two, 1=One}
+
+
+example:
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.Map;
+
+public class ConcurrentHashMapExample {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new ConcurrentHashMap<>();
+        map.put(1, "One");
+        map.put(2, "Two");
+        map.put(3, "Three");
+        map.put(4, "Four");
+        map.put(5, "Five");
+
+        System.out.println("Map: " + map);
+        System.out.println("Size: " + map.size());
+        System.out.println("Contains key 3: " + map.containsKey(3));
+        System.out.println("Contains value 'Four': " + map.containsValue("Four"));
+        System.out.println("Value for key 2: " + map.get(2));
+        System.out.println("Remove key 4: " + map.remove(4));
+        System.out.println("Map: " + map);
+    }
+}
+
+
+Output:
+
+Map: {1=One, 2=Two, 3=Three, 4=Four, 5=Five}
+Size: 5
+Contains key 3: true
+Contains value 'Four': true
+Value for key 2: Two
+Remove key 4: Four
+Map: {1=One, 2=Two, 3=Three, 5=Five}
+
+
+
+
+
+
+
+
+

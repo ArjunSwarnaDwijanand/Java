@@ -1,0 +1,6 @@
+
+Liskov Substitution Principle (LSP) is one of the SOLID principles.
+
+ It is a principle in object-oriented programming that states that objects of a superclass shall be replaceable
+ with objects of its subclasses without affecting the functionality of the program.
+

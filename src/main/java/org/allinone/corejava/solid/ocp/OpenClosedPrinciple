@@ -1,0 +1,5 @@
+
+OpenClosedPrinciple
+
+OpenClosedPrinciple state that according to new requirements the existing code should be open for extension but closed for modification.
+ This principle is very important in software development because it helps to reduce the risk of introducing new bugs in the existing code.

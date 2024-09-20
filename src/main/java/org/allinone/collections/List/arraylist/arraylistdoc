@@ -1,0 +1,84 @@
+What is List in Java?
+
+List is an interface in the java collections framework.
+
+ArrayList, LinkedList, and Vector are common implementations of the List interface.
+
+List allows duplicate elements and maintains the insertion order of elements.
+
+List provides methods for adding, removing, and accessing elements by index.
+
+ArrayList is implemented as dynamic array.
+ArrayList is not synchronized.
+ArrayList allows null elements.
+ArrayList is faster than LinkedList for random access operations.
+ArrayList is not thread-safe.
+ArrayList increases its size by 50% when it reaches its capacity.
+ArrayList is not suitable for frequent insertions and deletions.
+ArrayList is suitable for frequent access to elements by index.
+ArrayList is not suitable for multi-threaded environments.
+ArrayList allows duplicate elements.
+ArrayList maintains the insertion order of elements.
+ArrayList is not sorted by default.
+
+
+LinkedList is implemented as a doubly linked list.
+LinkedList is slower than ArrayList for random access operations.
+LinkedList is thread-safe.
+LinkedList increases its size by 100% when it reaches its capacity.
+LinkedList is suitable for frequent insertions and deletions.
+LinkedList is not suitable for frequent access to elements by index.
+LinkedList is suitable for multi-threaded environments.
+LinkedList allows duplicate elements.
+LinkedList maintains the insertion order of elements.
+LinkedList is not sorted by default.
+
+
+Vector is a synchronized version of ArrayList.
+Vector is thread-safe.
+Vector allows null elements.
+Vector is slower than ArrayList for random access operations.
+Vector increases its size by 100% when it reaches its capacity.
+Vector is suitable for frequent insertions and deletions.
+Vector is suitable for frequent access to elements by index.
+Vector is suitable for multi-threaded environments.
+Vector allows duplicate elements.
+Vector maintains the insertion order of elements.
+Vector is not sorted by default.
+
+exapmle of ArrayList:
+
+List<String> names = new ArrayList<>();
+names.add("Alice");
+names.add("Bob");
+names.add("Alice");
+System.out.println(names); // Output: [Alice, Bob, Alice]
+
+example of LinkedList:
+
+List<String> names = new LinkedList<>();
+names.add("Alice");
+names.add("Bob");
+names.add("Alice");
+System.out.println(names); // Output: [Alice, Bob, Alice]
+
+example of Vector:
+
+List<String> names = new Vector<>();
+names.add("Alice");
+names.add("Bob");
+names.add("Alice");
+System.out.println(names); // Output: [Alice, Bob, Alice]
+
+What is the difference between non-thread-safe and thread-safe collections in Java?
+
+Thread safety is a property of a program, method, or class that ensures it functions correctly when multiple threads access it at the same time.
+Thread-safe components can be used by multiple threads without causing unpredictable behavior, race conditions, or data corruption
+
+In contrast, non-thread-safe code can cause programs to become unstable and produce unpredictable results.
+For example, if multiple threads work on the same method that changes data, the method is not thread-safe and the results will be inconsistent.
+
+What is the difference between Synchronized and Non-Synchronized collections in Java?
+A Synchronized class is a thread-safe class. Non synchronized -It is not-thread safe and can't be shared between many threads without proper synchronization code. While, Synchronized- It is thread-safe and can be shared with many threads.
+
+

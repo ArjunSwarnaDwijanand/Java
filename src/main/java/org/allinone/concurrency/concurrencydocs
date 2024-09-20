@@ -1,0 +1,1277 @@
+What are the main components of concurrency API?
+
+The Concurrency API in Java is a set of classes and interfaces that provide mechanisms for handling concurrent programming. It was introduced in Java 5. The main components of the Concurrency API are:
+
+1. Executor Framework
+Executor: The base interface for executing tasks.
+ExecutorService: A subinterface of Executor that provides methods to manage the termination and tracking of tasks.
+ScheduledExecutorService: An extension of ExecutorService to support scheduling tasks with delays or periodic execution.
+ThreadPoolExecutor: A concrete implementation of ExecutorService that uses a pool of worker threads to execute tasks.
+ForkJoinPool: A special kind of ExecutorService designed to efficiently process large tasks that can be broken down into smaller pieces.
+2. Concurrent Collections
+ConcurrentHashMap: A thread-safe version of HashMap that allows concurrent read and write operations.
+CopyOnWriteArrayList: A thread-safe variant of ArrayList where all mutative operations (e.g., add, set, remove) are implemented by making a fresh copy of the underlying array.
+CopyOnWriteArraySet: Similar to CopyOnWriteArrayList, but for sets.
+BlockingQueue (e.g., LinkedBlockingQueue, ArrayBlockingQueue): A queue that supports operations that wait for the queue to become non-empty when retrieving an element, and wait for space to become available in the queue when storing an element.
+3. Locks
+ReentrantLock: A lock with the same basic behavior and semantics as the implicit monitor lock accessed using synchronized methods and statements, but with extended capabilities.
+ReadWriteLock: A pair of associated locks—one for read-only operations and one for write operations.
+StampedLock: A modern lock offering three modes for controlling read/write access (write lock, read lock, and optimistic read).
+4. Atomic Variables
+AtomicInteger, AtomicLong, AtomicReference, etc.: Classes that support lock-free thread-safe programming on single variables. They provide atomic operations like getAndIncrement, compareAndSet, etc.
+5. Synchronization Utilities
+CountDownLatch: Allows one or more threads to wait until a set of operations being performed in other threads completes.
+CyclicBarrier: A synchronization aid that allows a set of threads to all wait for each other to reach a common barrier point.
+Semaphore: A signaling mechanism that controls access to a resource through the use of permits.
+Exchanger: A synchronization point where two threads can exchange objects.
+Phaser: A flexible synchronization barrier that can be used to coordinate the execution of threads.
+6. Future and Callable
+Callable: A task that returns a result and may throw an exception. It is similar to Runnable, but can return a result.
+Future: Represents the result of an asynchronous computation. It provides methods to check if the computation is complete, to wait for its completion, and to retrieve the result.
+7. Fork/Join Framework
+ForkJoinPool: A specialized implementation of ExecutorService designed for work that can be broken into smaller pieces.
+ForkJoinTask: A lightweight task that can be submitted to a ForkJoinPool.
+8. CompletableFuture: CompletableFuture is a class that represents a future result of an asynchronous computation. It provides a way to perform asynchronous operations and handle the result when it becomes available.
+
+example:
+
+public class Main {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        Runnable task1 = () -> {
+            System.out.println("Task 1 started");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task 1 completed");
+        };
+
+        Runnable task2 = () -> {
+            System.out.println("Task 2 started");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task 2 completed");
+        };
+
+        executor.submit(task1);
+        executor.submit(task2);
+
+        executor.shutdown();
+    }
+}
+
+what is the difference between synchronized and thread-safe?
+
+Synchronized and thread-safe are related concepts in concurrent programming, but they are not the same thing. Here are the key differences between the two:
+
+Synchronized:
+Synchronized is a keyword in Java that is used to create a critical section of code that can only be executed by one thread at a time.
+Synchronized blocks or methods ensure that only one thread can execute the synchronized code at a time, preventing
+concurrent access to shared resources.
+Synchronized blocks or methods acquire an intrinsic lock (also known as a monitor lock) on the object they are synchronized on.
+Synchronized blocks or methods can be used to protect critical sections of code from
+concurrent access, ensuring that shared resources are accessed safely.
+Thread-Safe:
+Thread-safe refers to code or data structures that can be accessed by multiple threads concurrently without causing data corruption or inconsistencies.
+Thread-safe code is designed to handle concurrent access in a way that ensures data integrity and consistency.
+Thread-safe data structures or algorithms are designed to be used in multi-threaded environments without the need for external synchronization mechanisms like synchronized blocks or locks.
+Thread-safe code is typically implemented using synchronization primitives like locks, atomic variables, or concurrent data structures.
+In summary, synchronized is a mechanism in Java for creating mutually exclusive sections of code to prevent concurrent access to shared resources, while thread-safe refers to code or data structures that can be accessed by multiple threads concurrently without causing data corruption or inconsistencies.
+
+example:
+
+public class Counter {
+    private int count;
+
+    public synchronized void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+
+exaple of thread-safe:
+
+Counter counter = new Counter();
+
+Runnable task = () -> {
+    for (int i = 0; i < 1000; i++) {
+        counter.increment();
+    }
+};
+
+Thread thread1 = new Thread(task);
+
+Thread thread2 = new Thread(task);
+
+thread1.start();
+
+thread2.start();
+
+try {
+    thread1.join();
+    thread2.join();
+} catch (InterruptedException e) {
+    e.printStackTrace();
+}
+
+System.out.println("Final count: " + counter.getCount());
+
+
+
+In the example above, the increment method is synchronized, ensuring that only one thread can increment the count at a time. This makes the Counter class thread-safe, as multiple threads can safely access and modify the count without causing data corruption.
+
+what is the difference between non-synchronized and not thread-safe?
+
+Non-synchronized and not thread-safe are related concepts in concurrent programming, but they are not the same thing. Here are the key differences between the two:
+
+Non-Synchronized:
+Non-synchronized refers to code or data structures that do not use synchronization mechanisms like synchronized blocks or locks to control access by multiple threads.
+Non-synchronized code allows multiple threads to access shared resources concurrently without any restrictions or coordination.
+Non-synchronized code is not designed to handle concurrent access in a safe or predictable manner, and may lead to data corruption or inconsistencies when accessed by multiple threads simultaneously.
+Non-synchronized code is typically used in single-threaded environments or in situations where concurrent access is not a concern.
+Not Thread-Safe:
+Not thread-safe refers to code or data structures that are not designed to handle concurrent access by multiple threads without causing data corruption or inconsistencies.
+Not thread-safe code may exhibit unexpected behavior or produce incorrect results when accessed by multiple threads concurrently.
+Not thread-safe code is vulnerable to
+
+example of non-synchronized:
+
+public class Counter {
+    private int count;
+
+    public void increment() {
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+}
+
+example of not thread-safe:
+
+Counter counter = new Counter();
+
+Runnable task = () -> {
+    for (int i = 0; i < 1000; i++) {
+        counter.increment();
+    }
+};
+
+Thread thread1 = new Thread(task);
+
+Thread thread2 = new Thread(task);
+
+thread1.start();
+
+thread2.start();
+
+try {
+    thread1.join();
+    thread2.join();
+} catch (InterruptedException e) {
+    e.printStackTrace();
+}
+
+System.out.println("Final count: " + counter.getCount());
+
+In the example above, the increment method in the Counter class is not synchronized, allowing multiple threads to concurrently access and modify the count. This makes the Counter class not thread-safe, as concurrent access by multiple threads can lead to data corruption or inconsistencies.
+
+example of Executor
+
+public class Main {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        Runnable task1 = () -> {
+            System.out.println("Task 1 started");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task 1 completed");
+        };
+
+        Runnable task2 = () -> {
+            System.out.println("Task 2 started");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task 2 completed");
+        };
+
+        executor.submit(task1);
+        executor.submit(task2);
+
+        executor.shutdown();
+    }
+}
+
+In the example above, we create an ExecutorService with a fixed thread pool size of 2 using Executors.newFixedThreadPool(2). We then define two Runnable tasks (task1 and task2) that simulate some work by sleeping for a certain amount of time. We submit these tasks to the executor using executor.submit(task1) and executor.submit(task2). Finally, we shut down the executor using executor.shutdown().
+
+The ExecutorService manages the execution of tasks on the thread pool, ensuring that the tasks are executed concurrently by the available threads. This allows us to parallelize work and take advantage of multi-core processors to improve performance.
+
+example of executor service
+
+public class Main {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+
+        Runnable task1 = () -> {
+            System.out.println("Task 1 started");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task 1 completed");
+        };
+
+        Runnable task2 = () -> {
+            System.out.println("Task 2 started");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task 2 completed");
+        };
+
+        executor.submit(task1);
+        executor.submit(task2);
+
+        executor.shutdown();
+    }
+}
+
+In the example above, we create an ExecutorService with a fixed thread pool size of 2 using Executors.newFixedThreadPool(2). We then define two Runnable tasks (task1 and task2) that simulate some work by sleeping for a certain amount of time. We submit these tasks to the executor using executor.submit(task1) and executor.submit(task2). Finally, we shut down the executor using executor.shutdown().
+
+The ExecutorService manages the execution of tasks on the thread pool, ensuring that the tasks are executed concurrently by the available threads. This allows us to parallelize work and take advantage of multi-core processors to improve performance.
+
+example of scheduled executor service
+
+public class Main {
+    public static void main(String[] args) {
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+
+        Runnable task = () -> {
+            System.out.println("Task started");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task completed");
+        };
+
+        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        executor.shutdown();
+    }
+}
+
+In the example above, we create a ScheduledExecutorService with a single thread using Executors.newScheduledThreadPool(1). We define a Runnable task that simulates some work by sleeping for 2 seconds. We schedule this task to run at a fixed rate of 1 second using executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS).
+
+The ScheduledExecutorService will execute the task at the specified rate, ensuring that it runs periodically with the specified interval. In this example, the task will run every second after an initial delay of 0 seconds. We then wait for 5 seconds before shutting down the executor using executor.shutdown().
+
+example of thread pool executor
+
+public class Main {
+    public static void main(String[] args) {
+        ExecutorService executor = new ThreadPoolExecutor(2, 4, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>(10));
+
+        Runnable task1 = () -> {
+            System.out.println("Task 1 started");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task 1 completed");
+        };
+
+        Runnable task2 = () -> {
+            System.out.println("Task 2 started");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task 2 completed");
+        };
+
+        executor.submit(task1);
+        executor.submit(task2);
+
+        executor.shutdown();
+    }
+}
+
+In the example above, we create a ThreadPoolExecutor with a core pool size of 2, a maximum pool size of 4, no keep-alive time, and a LinkedBlockingQueue with a capacity of 10. We define two Runnable tasks (task1 and task2) that simulate some work by sleeping for a certain amount of time. We submit these tasks to the executor using executor.submit(task1) and executor.submit(task2). Finally, we shut down the executor using executor.shutdown().
+
+The ThreadPoolExecutor manages the execution of tasks on the thread pool, ensuring that the tasks are executed concurrently by the available threads. The core pool size determines the number of threads initially created, while the maximum pool size determines the maximum number of threads that can be created. The LinkedBlockingQueue is used to hold tasks when the pool is full, allowing tasks to be executed when threads become available.
+
+example of fork join pool
+
+public class Main {
+    public static void main(String[] args) {
+        ForkJoinPool pool = new ForkJoinPool();
+
+        RecursiveTask<Integer> task = new RecursiveTask<Integer>() {
+            @Override
+            protected Integer compute() {
+                if (ThreadLocalRandom.current().nextBoolean()) {
+                    return 1;
+                } else {
+                    RecursiveTask<Integer> subtask1 = new RecursiveTask<Integer>() {
+                        @Override
+                        protected Integer compute() {
+                            return 2;
+                        }
+                    };
+
+                    RecursiveTask<Integer> subtask2 = new RecursiveTask<Integer>() {
+                        @Override
+                        protected Integer compute() {
+                            return 3;
+                        }
+                    };
+
+                    subtask1.fork();
+                    subtask2.fork();
+
+                    return subtask1.join() + subtask2.join();
+                }
+            }
+        };
+
+        int result = pool.invoke(task);
+
+        System.out.println("Result: " + result);
+
+        pool.shutdown();
+    }
+}
+
+In the example above, we create a ForkJoinPool and define a RecursiveTask that generates a random number between 1 and 3. If the random number is 1, the task returns 1. Otherwise, it creates two subtasks that return 2 and 3, respectively. The subtasks are forked and joined to calculate the final result.
+
+We then invoke the task using pool.invoke(task) to start the computation. The ForkJoinPool manages the execution of tasks by recursively splitting them into smaller subtasks and executing them in parallel. The result of the computation is printed to the console, and the pool is shut down using pool.shutdown().
+
+example of concurrent hash map
+
+public class Main {
+    public static void main(String[] args) {
+        Map<Integer, String> map = new ConcurrentHashMap<>();
+
+        map.put(1, "One");
+        map.put(2, "Two");
+        map.put(3, "Three");
+
+        Runnable task = () -> {
+            for (int i = 4; i <= 10; i++) {
+                map.put(i, "Number " + i);
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.start();
+
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(map);
+    }
+}
+
+In the example above, we create a ConcurrentHashMap and populate it with key-value pairs. We then define a Runnable task that adds more key-value pairs to the map in a separate thread. We start the thread using thread.start() and wait for it to complete using thread.join(). Finally, we print the contents of the map to the console.
+
+The ConcurrentHashMap is a thread-safe implementation of the Map interface that allows concurrent read and write operations without the need for external synchronization. This ensures that the map can be safely accessed by multiple threads concurrently without causing data corruption or inconsistencies.
+
+example of copy on write array list
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> list = new CopyOnWriteArrayList<>();
+
+        list.add("One");
+        list.add("Two");
+        list.add("Three");
+
+        Runnable task = () -> {
+            for (int i = 4; i <= 10; i++) {
+                list.add("Number " + i);
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.start();
+
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(list);
+    }
+}
+
+In the example above, we create a CopyOnWriteArrayList and populate it with strings. We then define a Runnable task that adds more strings to the list in a separate thread. We start the thread using thread.start() and wait for it to complete using thread.join(). Finally, we print the contents of the list to the console.
+
+The CopyOnWriteArrayList is a thread-safe variant of the ArrayList class that allows concurrent read and write operations without the need for external synchronization. When a write operation is performed, a new copy of the underlying array is created, ensuring that the original list remains unchanged and can be safely accessed by other threads concurrently.
+
+example of copy on write array set
+
+public class Main {
+    public static void main(String[] args) {
+        Set<String> set = new CopyOnWriteArraySet<>();
+
+        set.add("One");
+        set.add("Two");
+        set.add("Three");
+
+        Runnable task = () -> {
+            for (int i = 4; i <= 10; i++) {
+                set.add("Number " + i);
+            }
+        };
+
+        Thread thread = new Thread(task);
+        thread.start();
+
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(set);
+    }
+}
+
+In the example above, we create a CopyOnWriteArraySet and populate it with strings. We then define a Runnable task that adds more strings to the set in a separate thread. We start the thread using thread.start() and wait for it to complete using thread.join(). Finally, we print the contents of the set to the console.
+
+The CopyOnWriteArraySet is a thread-safe variant of the HashSet class that allows
+
+example of blocking queue
+
+public class Main {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(10);
+
+        Runnable producer = () -> {
+            for (int i = 1; i <= 10; i++) {
+                try {
+                    queue.put(i);
+                    System.out.println("Produced: " + i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Runnable consumer = () -> {
+            for (int i = 1; i <= 10; i++) {
+                try {
+                    int value = queue.take();
+                    System.out.println("Consumed: " + value);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Thread producerThread = new Thread(producer);
+        Thread consumerThread = new Thread(consumer);
+
+        producerThread.start();
+        consumerThread.start();
+
+        try {
+            producerThread.join();
+            consumerThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+In the example above, we create a LinkedBlockingQueue with a capacity of 10. We define two Runnable tasks: a producer that adds integers to the queue and a consumer that removes integers from the queue. We start the producer and consumer threads, allowing them to produce and consume integers concurrently. Finally, we wait for the threads to complete using thread.join().
+
+The LinkedBlockingQueue is a thread-safe implementation of the BlockingQueue interface that supports operations that wait for the queue to become non-empty when retrieving an element and wait for space to become available in the queue when storing an element. This allows producers and consumers to interact safely and efficiently without the need for external synchronization.
+
+example of reentrant lock
+
+public class Main {
+    private static final ReentrantLock lock = new ReentrantLock();
+
+    public static void main(String[] args) {
+        Runnable task = () -> {
+            lock.lock();
+            try {
+                System.out.println(Thread.currentThread().getName() + " acquired the lock");
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+                System.out.println(Thread.currentThread().getName() + " released the lock");
+            }
+        };
+
+        Thread thread1 = new Thread(task);
+        Thread thread2 = new Thread(task);
+
+        thread1.start();
+        thread2.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+In the example above, we create a ReentrantLock and define a Runnable task that acquires the lock, sleeps for 2 seconds, and then releases the lock. We start two threads that execute the task concurrently, allowing them to acquire and release the lock. The ReentrantLock ensures that only one thread can acquire the lock at a time, preventing concurrent access to the critical section of code.
+
+The ReentrantLock is a lock implementation in Java that provides the same basic behavior and semantics as the implicit monitor lock accessed using synchronized methods and statements, but with extended capabilities. It supports features like lock acquisition, lock release, and condition variables, allowing for more fine-grained control over concurrency.
+
+example of read write lock
+
+public class Main {
+    private static final ReadWriteLock lock = new ReentrantReadWriteLock();
+    private static final Lock readLock = lock.readLock();
+    private static final Lock writeLock = lock.writeLock();
+    private static int value = 0;
+
+    public static void main(String[] args) {
+        Runnable reader = () -> {
+            readLock.lock();
+            try {
+                System.out.println(Thread.currentThread().getName() + " read value: " + value);
+            } finally {
+                readLock.unlock();
+            }
+        };
+
+        Runnable writer = () -> {
+            writeLock.lock();
+            try {
+                value++;
+                System.out.println(Thread.currentThread().getName() + " wrote value: " + value);
+            } finally {
+                writeLock.unlock();
+            }
+        };
+
+        Thread readerThread1 = new Thread(reader);
+        Thread readerThread2 = new Thread(reader);
+        Thread writerThread1 = new Thread(writer);
+        Thread writerThread2 = new Thread(writer);
+
+        readerThread1.start();
+        readerThread2.start();
+        writerThread1.start();
+        writerThread2.start();
+
+        try {
+            readerThread1.join();
+            readerThread2.join();
+            writerThread1.join();
+            writerThread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+In the example above, we create a ReentrantReadWriteLock and define two Locks: a read lock and a write lock. We also define a shared value that will be read and written by multiple threads. We create two Runnable tasks: a reader that reads the value and a writer that increments the value. We start two reader threads and two writer threads, allowing them to read and write the value concurrently. The ReadWriteLock ensures that multiple readers can access the value concurrently, but only one writer can access it at a time.
+
+The ReadWriteLock is a lock implementation in Java that provides separate locks for read and write operations. It allows multiple threads to read the shared resource concurrently, but ensures that only one thread can write to the resource at a time. This can improve performance in scenarios where reads are more frequent than writes, as it allows for greater concurrency among readers.
+
+How to implement producer-consumer problem by using BlockingQueue?
+
+The producer-consumer problem is a classic synchronization problem in concurrent programming, where one or more producer threads produce items and put them into a shared buffer, while one or more consumer threads consume the items from the buffer. The challenge is to ensure that producers and consumers can work concurrently without interfering with each other, and that the buffer is accessed safely and efficiently.
+
+One way to implement the producer-consumer problem in Java is by using a BlockingQueue, which is a thread-safe data structure that supports operations that wait for the queue to become non-empty when retrieving an element, and wait for space to become available in the queue when storing an element. The BlockingQueue provides a simple and efficient way to coordinate the interaction between producers and consumers.
+
+Here is an example of how to implement the producer-consumer problem using a BlockingQueue:
+
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class Main {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> buffer = new LinkedBlockingQueue<>(10);
+
+        Runnable producer = () -> {
+            for (int i = 1; i <= 10; i++) {
+                try {
+                    buffer.put(i);
+                    System.out.println("Produced: " + i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Runnable consumer = () -> {
+            for (int i = 1; i <= 10; i++) {
+                try {
+                    int value = buffer.take();
+                    System.out.println("Consumed: " + value);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Thread producerThread = new Thread(producer);
+        Thread consumerThread = new Thread(consumer);
+
+        producerThread.start();
+        consumerThread.start();
+
+        try {
+            producerThread.join();
+            consumerThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+In the example above, we create a LinkedBlockingQueue with a capacity of 10 to serve as the shared buffer between the producer and consumer threads. We define two Runnable tasks: a producer that puts integers into the buffer and a consumer that takes integers from the buffer. We start the producer and consumer threads, allowing them to produce and consume integers concurrently. Finally, we wait for the threads to complete using thread.join().
+
+The BlockingQueue handles the synchronization and coordination between the producer and consumer threads, ensuring that the producer blocks when the buffer is full and the consumer blocks when the buffer is empty. This allows the producer and consumer to work concurrently without interfering with each other, and provides a simple and efficient solution to the producer-consumer problem.
+
+What do you understand by Callable and Future in Java?
+
+Callable and Future are interfaces in the Java Concurrency API that provide a way to perform asynchronous computations and handle the result when it becomes available. They are commonly used in scenarios where a task needs to return a result or throw an exception, and the calling thread needs to wait for the result to be available.
+
+Callable:
+Callable is a functional interface in the java.util.concurrent package that represents a task that returns a result and may throw an exception. It is similar to the Runnable interface, but can return a result or throw a checked exception. The Callable interface has a single method called call() that returns a result of type V and may throw an exception of type E.
+
+Future:
+
+Future is an interface in the java.util.concurrent package that represents the result of an asynchronous computation. It provides methods to check if the computation is complete, to wait for its completion, and to retrieve the result. The Future interface has methods like get() to retrieve the result, cancel() to cancel the computation, and isDone() to check if the computation is complete.
+
+Here is an example of how to use Callable and Future in Java:
+
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+
+public class Main {
+    public static void main(String[] args) {
+        Callable<Integer> task = () -> {
+            Thread.sleep(2000);
+            return 42;
+        };
+
+        FutureTask<Integer> futureTask = new FutureTask<>(task);
+
+        Thread thread = new Thread(futureTask);
+        thread.start();
+
+        try {
+            int result = futureTask.get();
+            System.out.println("Result: " + result);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+In the example above, we create a Callable task that sleeps for 2 seconds and returns the value 42. We then create a FutureTask with the Callable task and start a new thread to execute the task. We use the get() method of the FutureTask to wait for the result of the computation and retrieve the result when it becomes available. Finally, we print the result to the console.
+
+The Callable and Future interfaces provide a way to perform asynchronous computations and handle the result when it becomes available. They are commonly used in scenarios where a task needs to return a result or throw an exception, and the calling thread needs to wait for the result to be available.
+
+What is the difference between submit() and execute() methods in ExecutorService?
+
+The ExecutorService interface in the Java Concurrency API provides two methods for submitting tasks to be executed by a thread pool: submit() and execute(). While both methods can be used to submit tasks for execution, there are some key differences between them in terms of return values, exception handling, and task types.
+
+Here are the main differences between the submit() and execute() methods in ExecutorService:
+
+submit():
+
+The submit() method in the ExecutorService interface is used to submit a Callable or Runnable task for execution and returns a Future object representing the result of the computation. The Future object can be used to check if the computation is complete, to wait for its completion, and to retrieve the result.
+
+The submit() method can be used to submit tasks that return a result or throw an exception, as it can handle both Callable and Runnable tasks. It is a more flexible method that allows for more control over the execution of tasks and the handling of results.
+
+
+execute():
+
+The execute() method in the ExecutorService interface is used to submit a Runnable task for execution and does not return a result. It is a void method that does not provide a way to retrieve the result of the computation or handle exceptions thrown by the task.
+
+The execute() method is a simpler method that is suitable for submitting tasks that do not return a result or throw checked exceptions. It is commonly used for fire-and-forget tasks that do not require any further processing of the result.
+
+In summary, the submit() method is more flexible and provides a way to submit tasks that return a result or throw an exception, while the execute() method is simpler and suitable for fire-and-forget tasks that do not require any further processing of the result.
+
+Java Future provides following methods for implementation.
+
+isDone() - Returns true if the task was completed, either normally or via an exception.
+get() - Waits if necessary for the computation to complete, and then retrieves its result.
+get(long timeout, TimeUnit unit) - Waits if necessary for at most the given time for the computation to complete, and then retrieves its result, if available.
+cancel(boolean mayInterruptIfRunning) - Attempts to cancel execution of this task.
+isCancelled() - Returns true if this task was cancelled before it completed normally.
+
+what is  completable future in java?
+
+CompletableFuture is a class in the Java
+Concurrency API that represents a future result of an asynchronous computation. It provides a way to perform asynchronous operations and handle the result when it becomes available. CompletableFuture is a powerful and flexible tool for building asynchronous and non-blocking applications in Java.
+
+CompletableFuture provides a wide range of methods for creating, combining, and chaining asynchronous computations. It supports features like combining multiple CompletableFutures, handling exceptions, and applying transformations to the result. CompletableFuture can be used to perform tasks like fetching data from a remote service, processing data in parallel, or executing long-running computations asynchronously.
+
+Here are some key features and benefits of CompletableFuture in Java:
+
+Asynchronous Execution: CompletableFuture allows tasks to be executed asynchronously, enabling non-blocking and parallel processing of computations.
+
+Completion Handling: CompletableFuture provides methods to handle the completion of tasks, allowing for actions to be taken when the computation is complete, either normally or exceptionally.
+
+Exception Handling: CompletableFuture supports handling exceptions that occur during the computation, providing ways to recover from errors and propagate exceptions.
+
+Combining Results: CompletableFuture allows multiple CompletableFutures to be combined, either sequentially or in parallel, to create more complex asynchronous workflows.
+
+Transformation and Composition: CompletableFuture provides methods for applying transformations to the result of a computation and composing multiple CompletableFutures together to create more complex asynchronous pipelines.
+
+Timeouts and Cancellation: CompletableFuture supports setting timeouts for tasks and cancelling them if they take too long to complete, providing control over the execution of asynchronous operations.
+
+CompletableFuture is a versatile and powerful tool for building asynchronous and non-blocking applications in Java. It provides a rich set of features and methods for handling asynchronous computations, enabling developers to create efficient and responsive applications that can take advantage of multi-core processors and parallel processing.
+
+example of completable future
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            System.out.println("Task started");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task completed");
+            return 42;
+        });
+
+        future.thenAccept(result -> {
+            System.out.println("Result: " + result);
+        });
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+In the example above, we create a CompletableFuture using the supplyAsync() method, which asynchronously executes a task that sleeps for 2 seconds and returns the value 42. We then use the thenAccept() method to specify an action to be taken when the computation is complete, which prints the result to the console. Finally, we wait for 3 seconds to allow the CompletableFuture to complete before exiting the program.
+
+The CompletableFuture class provides a wide range of methods for creating, combining, and chaining asynchronous computations. It supports features like combining multiple CompletableFutures, handling exceptions, and applying transformations to the result. CompletableFuture is a powerful and flexible tool for building asynchronous and non-blocking applications in Java.
+
+what is the difference between complete() and completeExceptionally() methods in CompletableFuture?
+
+CompletableFuture is a class in the Java
+Concurrency API that represents a future result of an asynchronous computation. It provides methods for completing the computation and handling exceptions that occur during the computation. Two important methods in the CompletableFuture class are complete() and completeExceptionally(), which are used to complete the computation normally or exceptionally, respectively.
+
+Here are the main differences between the complete() and completeExceptionally() methods in CompletableFuture:
+
+complete():
+
+The complete() method in the CompletableFuture class is used to complete the computation normally by setting the result of the computation. It takes a value of type T as an argument and sets the result of the CompletableFuture to that value. The complete() method is used when the computation completes successfully and returns a result.
+
+completeExceptionally():
+
+The completeExceptionally() method in the CompletableFuture class is used to complete the computation exceptionally by setting an exception as the result of the computation. It takes an exception of type Throwable as an argument and sets the result of the CompletableFuture to that exception. The completeExceptionally() method is used when an exception occurs during the computation and the result cannot be returned.
+
+In summary, the complete() method is used to complete the computation normally by setting the result of the CompletableFuture, while the completeExceptionally() method is used to complete the computation exceptionally by setting an exception as the result. These methods provide a way to handle the completion of asynchronous computations and propagate results or exceptions to downstream tasks.
+
+example of complete()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = new CompletableFuture<>();
+
+        future.complete(42);
+
+        future.thenAccept(result -> {
+            System.out.println("Result: " + result);
+        });
+    }
+}
+
+In the example above, we create a CompletableFuture without an initial value using the CompletableFuture constructor. We then use the complete() method to set the result of the CompletableFuture to the value 42. We use the thenAccept() method to specify an action to be taken when the computation is complete, which prints the result to the console.
+
+The complete() method is used to complete the computation normally by setting the result of the CompletableFuture. In this case, we set the result to the value 42, which is then processed by the downstream task specified in the thenAccept() method.
+
+example of completeExceptionally()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = new CompletableFuture<>();
+
+        future.completeExceptionally(new RuntimeException("An error occurred"));
+
+        future.exceptionally(e -> {
+            System.out.println("Exception: " + e.getMessage());
+            return null;
+        });
+    }
+}
+
+In the example above, we create a CompletableFuture without an initial value using the CompletableFuture constructor. We then use the completeExceptionally() method to set an exception as the result of the CompletableFuture. We provide a RuntimeException with an error message as the argument to the completeExceptionally() method. We use the exceptionally() method to specify an action to be taken when an exception occurs during the computation, which prints the exception message to the console.
+
+The completeExceptionally() method is used to complete the computation exceptionally by setting an exception as the result of the CompletableFuture. In this case, we set a RuntimeException with an error message as the result, which is then processed by the exceptionally() method to handle the exception and perform error handling logic.
+
+what is the difference between thenApply() and thenAccept() methods in CompletableFuture?
+
+CompletableFuture is a class in the Java
+Concurrency API that represents a future result of an asynchronous computation. It provides methods for chaining asynchronous computations and handling the result when it becomes available. Two important methods in the CompletableFuture class are thenApply() and thenAccept(), which are used to apply transformations to the result of a computation and consume the result, respectively.
+
+Here are the main differences between the thenApply() and thenAccept() methods in CompletableFuture:
+
+thenApply():
+
+The thenApply() method in the CompletableFuture class is used to apply a transformation to the result of a computation and return a new CompletableFuture with the transformed result. It takes a Function<T, U> as an argument, where T is the type of the original result and U is the type of the transformed result. The thenApply() method is used when a transformation needs to be applied to the result of a computation.
+
+thenAccept():
+
+The thenAccept() method in the CompletableFuture class is used to consume the result of a computation and perform an action on the result without returning a new CompletableFuture. It takes a Consumer<T> as an argument, where T is the type of the result. The thenAccept() method is used when the result of a computation needs to be consumed and processed without returning a new result.
+
+In summary, the thenApply() method is used to apply a transformation to the result of a computation and return a new CompletableFuture with the transformed result, while the thenAccept() method is used to consume the result of a computation and perform an action on the result without returning a new CompletableFuture. These methods provide a way to chain asynchronous computations and handle the result in different ways.
+
+example of thenApply()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 42);
+
+        CompletableFuture<String> transformedFuture = future.thenApply(result -> "Result: " + result);
+
+        transformedFuture.thenAccept(System.out::println);
+    }
+}
+
+In the example above, we create a CompletableFuture using the supplyAsync() method, which asynchronously returns the value 42. We then use the thenApply() method to apply a transformation to the result of the computation, adding the prefix "Result: " to the result. The thenApply() method returns a new CompletableFuture with the transformed result, which is then processed by the thenAccept() method to print the result to the console.
+
+The thenApply() method is used to apply a transformation to the result of a computation and return a new CompletableFuture with the transformed result. In this case, we transform the result by adding a prefix to it, creating a new CompletableFuture with the transformed result.
+
+example of thenAccept()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 42);
+
+        future.thenAccept(result -> System.out.println("Result: " + result));
+    }
+}
+
+In the example above, we create a CompletableFuture using the supplyAsync() method, which asynchronously returns the value 42. We then use the thenAccept() method to consume the result of the computation and print it to the console. The thenAccept() method does not return a new CompletableFuture, but instead performs an action on the result directly.
+
+The thenAccept() method is used to consume the result of a computation and perform an action on the result without returning a new CompletableFuture. In this case, we consume the result by printing it to the console, without returning a new result.
+
+what is the difference between thenCompose() and thenCombine() methods in CompletableFuture?
+
+CompletableFuture is a class in the Java
+
+Concurrency API that represents a future result of an asynchronous computation. It provides methods for combining and chaining asynchronous computations to create more complex workflows. Two important methods in the CompletableFuture class are thenCompose() and thenCombine(), which are used to combine multiple CompletableFutures and process the results in different ways.
+
+Here are the main differences between the thenCompose() and thenCombine() methods in CompletableFuture:
+
+thenCompose():
+
+The thenCompose() method in the CompletableFuture class is used to combine multiple CompletableFutures sequentially and process the results in a nested manner. It takes a Function<T, CompletionStage<U>> as an argument, where T is the type of the original result and U is the type of the result of the nested CompletableFuture. The thenCompose() method is used when the results of multiple CompletableFutures need to be combined sequentially and processed in a nested manner.
+
+thenCombine():
+
+The thenCombine() method in the CompletableFuture class is used to combine multiple CompletableFutures in parallel and process the results in a non-nested manner. It takes a BiFunction<T, U, V> as an argument, where T and U are the types of the results of the two CompletableFutures being combined, and V is the type of the combined result. The thenCombine() method is used when the results of multiple CompletableFutures need to be combined in parallel and processed in a non-nested manner.
+
+In summary, the thenCompose() method is used to combine multiple CompletableFutures sequentially and process the results in a nested manner, while the thenCombine() method is used to combine multiple CompletableFutures in parallel and process the results in a non-nested manner. These methods provide a way to create more complex asynchronous workflows by combining and processing the results of multiple CompletableFutures.
+
+example of thenCompose()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future1 = CompletableFuture.supplyAsync(() -> 42);
+        CompletableFuture<Integer> future2 = CompletableFuture.supplyAsync(() -> 10);
+
+        CompletableFuture<Integer> composedFuture = future1.thenCompose(result1 -> future2.thenApply(result2 -> result1 + result2));
+
+        composedFuture.thenAccept(result -> System.out.println("Result: " + result));
+    }
+}
+
+In the example above, we create two CompletableFutures using the supplyAsync() method, which asynchronously return the values 42 and 10. We then use the thenCompose() method to combine the two CompletableFutures sequentially and process the results in a nested manner. The thenCompose() method takes the result of the first CompletableFuture and applies a transformation to the result of the second CompletableFuture, adding the two results together. The thenCompose() method returns a new CompletableFuture with the combined result, which is then processed by the thenAccept() method to print the result to the console.
+
+The thenCompose() method is used to combine multiple CompletableFutures sequentially and process the results in a nested manner. In this case, we combine the results of two CompletableFutures by adding them together in a nested manner, creating a new CompletableFuture with the combined result.
+
+example of thenCombine()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future1 = CompletableFuture.supplyAsync(() -> 42);
+        CompletableFuture<Integer> future2 = CompletableFuture.supplyAsync(() -> 10);
+
+        CompletableFuture<Integer> combinedFuture = future1.thenCombine(future2, (result1, result2) -> result1 + result2);
+
+        combinedFuture.thenAccept(result -> System.out.println("Result: " + result));
+    }
+}
+
+In the example above, we create two CompletableFutures using the supplyAsync() method, which asynchronously return the values 42 and 10. We then use the thenCombine() method to combine the two CompletableFutures in parallel and process the results in a non-nested manner. The thenCombine() method takes the results of the two CompletableFutures and applies a transformation to combine them, adding the two results together. The thenCombine() method returns a new CompletableFuture with the combined result, which is then processed by the thenAccept() method to print the result to the console.
+
+The thenCombine() method is used to combine multiple CompletableFutures in parallel and process the results in a non-nested manner. In this case, we combine the results of two CompletableFutures by adding them together in a non-nested manner, creating a new CompletableFuture with the combined result.
+
+what is the difference between allOf() and anyOf() methods in CompletableFuture?
+
+CompletableFuture is a class in the Java
+
+Concurrency API that represents a future result of an asynchronous computation. It provides methods for combining and chaining asynchronous computations to create more complex workflows. Two important methods in the CompletableFuture class are allOf() and anyOf(), which are used to combine multiple CompletableFutures and process the results in different ways.
+
+Here are the main differences between the allOf() and anyOf() methods in CompletableFuture:
+
+allOf():
+
+The allOf() method in the CompletableFuture class is used to combine multiple CompletableFutures and wait for all of them to complete. It takes an array of CompletableFutures as an argument and returns a new CompletableFuture that completes when all of the CompletableFutures in the array have completed. The allOf() method is used when all of the CompletableFutures need to complete before proceeding to the next step.
+
+anyOf():
+
+The anyOf() method in the CompletableFuture class is used to combine multiple CompletableFutures and wait for any of them to complete. It takes an array of CompletableFutures as an argument and returns a new CompletableFuture that completes when any of the CompletableFutures in the array have completed. The anyOf() method is used when any of the CompletableFutures can complete before proceeding to the next step.
+
+In summary, the allOf() method is used to combine multiple CompletableFutures and wait for all of them to complete, while the anyOf() method is used to combine multiple CompletableFutures and wait for any of them to complete. These methods provide a way to create more complex asynchronous workflows by combining and processing the results of multiple CompletableFutures.
+
+example of allOf()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future1 = CompletableFuture.supplyAsync(() -> 42);
+        CompletableFuture<Integer> future2 = CompletableFuture.supplyAsync(() -> 10);
+
+        CompletableFuture<Void> allOfFuture = CompletableFuture.allOf(future1, future2);
+
+        allOfFuture.thenRun(() -> System.out.println("All futures completed"));
+    }
+}
+
+In the example above, we create two CompletableFutures using the supplyAsync() method, which asynchronously return the values 42 and 10. We then use the allOf() method to combine the two CompletableFutures and wait for both of them to complete. The allOf() method takes an array of CompletableFutures as an argument and returns a new CompletableFuture that completes when all of the CompletableFutures in the array have completed. We use the thenRun() method to specify an action to be taken when all of the CompletableFutures have completed, which prints a message to the console.
+
+The allOf() method is used to combine multiple CompletableFutures and wait for all of them to complete. In this case, we combine two CompletableFutures and wait for both of them to complete before proceeding to the next step.
+
+example of anyOf()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future1 = CompletableFuture.supplyAsync(() -> 42);
+        CompletableFuture<Integer> future2 = CompletableFuture.supplyAsync(() -> 10);
+
+        CompletableFuture<Object> anyOfFuture = CompletableFuture.anyOf(future1, future2);
+
+        anyOfFuture.thenAccept(result -> System.out.println("Result: " + result));
+    }
+}
+
+In the example above, we create two CompletableFutures using the supplyAsync() method, which asynchronously return the values 42 and 10. We then use the anyOf() method to combine the two CompletableFutures and wait for any of them to complete. The anyOf() method takes an array of CompletableFutures as an argument and returns a new CompletableFuture that completes when any of the CompletableFutures in the array have completed. We use the thenAccept() method to specify an action to be taken when any of the CompletableFutures have completed, which prints the result to the console.
+
+The anyOf() method is used to combine multiple CompletableFutures and wait for any of them to complete. In this case, we combine two CompletableFutures and wait for any of them to complete before proceeding to the next step.
+
+what is the difference between thenRun() and thenRunAsync() methods in CompletableFuture?
+
+CompletableFuture is a class in the Java
+
+Concurrency API that represents a future result of an asynchronous computation. It provides methods for chaining asynchronous computations and handling the result when it becomes available. Two important methods in the CompletableFuture class are thenRun() and thenRunAsync(), which are used to specify actions to be taken when a computation is complete.
+
+Here are the main differences between the thenRun() and thenRunAsync() methods in CompletableFuture:
+
+thenRun():
+
+The thenRun() method in the CompletableFuture class is used to specify an action to be taken when a computation is complete, without returning a new CompletableFuture. It takes a Runnable as an argument, which represents the action to be performed when the computation is complete. The thenRun() method is used when a side effect needs to be performed after the computation is complete, without returning a new result.
+
+thenRunAsync():
+
+The thenRunAsync() method in the CompletableFuture class is used to specify an action to be taken when a computation is complete, without returning a new CompletableFuture. It takes a Runnable as an argument, which represents the action to be performed when the computation is complete. The thenRunAsync() method is used when the action needs to be performed asynchronously, in a separate thread from the main computation.
+
+In summary, the thenRun() method is used to specify an action to be taken when a computation is complete, without returning a new CompletableFuture, while the thenRunAsync() method is used to specify an action to be taken when a computation is complete, without returning a new CompletableFuture, and to perform the action asynchronously in a separate thread.
+
+example of thenRun()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 42);
+
+        future.thenRun(() -> System.out.println("Computation complete"));
+    }
+}
+
+In the example above, we create a CompletableFuture using the supplyAsync() method, which asynchronously returns the value 42. We then use the thenRun() method to specify an action to be taken when the computation is complete, which prints a message to the console. The thenRun() method does not return a new CompletableFuture, but instead performs the action directly after the computation is complete.
+
+The thenRun() method is used to specify an action to be taken when a computation is complete, without returning a new CompletableFuture. In this case, we specify an action to print a message to the console after the computation is complete.
+
+example of thenRunAsync()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 42);
+
+        future.thenRunAsync(() -> System.out.println("Computation complete"));
+    }
+}
+
+In the example above, we create a CompletableFuture using the supplyAsync() method, which asynchronously returns the value 42. We then use the thenRunAsync() method to specify an action to be taken when the computation is complete, which prints a message to the console. The thenRunAsync() method performs the action asynchronously in a separate thread from the main computation, allowing the action to be performed concurrently with other tasks.
+
+The thenRunAsync() method is used to specify an action to be taken when a computation is complete, without returning a new CompletableFuture, and to perform the action asynchronously in a separate thread. In this case, we specify an action to print a message to the console after the computation is complete, allowing the action to be performed concurrently with other tasks.
+
+what is the difference between thenApplyAsync() and thenAcceptAsync() methods in CompletableFuture?
+
+CompletableFuture is a class in the Java
+
+Concurrency API that represents a future result of an asynchronous computation. It provides methods for chaining asynchronous computations and handling the result when it becomes available. Two important methods in the CompletableFuture class are thenApplyAsync() and thenAcceptAsync(), which are used to apply transformations to the result of a computation and consume the result asynchronously, respectively.
+
+Here are the main differences between the thenApplyAsync() and thenAcceptAsync() methods in CompletableFuture:
+
+thenApplyAsync():
+
+The thenApplyAsync() method in the CompletableFuture class is used to apply a transformation to the result of a computation asynchronously and return a new CompletableFuture with the transformed result. It takes a Function<T, U> as an argument, where T is the type of the original result and U is the type of the transformed result. The thenApplyAsync() method is used when a transformation needs to be applied to the result of a computation asynchronously.
+
+thenAcceptAsync():
+
+The thenAcceptAsync() method in the CompletableFuture class is used to consume the result of a computation asynchronously and perform an action on the result without returning a new CompletableFuture. It takes a Consumer<T> as an argument, where T is the type of the result. The thenAcceptAsync() method is used when the result of a computation needs to be consumed and processed asynchronously without returning a new result.
+
+In summary, the thenApplyAsync() method is used to apply a transformation to the result of a computation asynchronously and return a new CompletableFuture with the transformed result, while the thenAcceptAsync() method is used to consume the result of a computation asynchronously and perform an action on the result without returning a new CompletableFuture. These methods provide a way to chain asynchronous computations and handle the result in different ways.
+
+example of thenApplyAsync()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 42);
+
+        CompletableFuture<String> transformedFuture = future.thenApplyAsync(result -> "Result: " + result);
+
+        transformedFuture.thenAccept(System.out::println);
+    }
+}
+
+In the example above, we create a CompletableFuture using the supplyAsync() method, which asynchronously returns the value 42. We then use the thenApplyAsync() method to apply a transformation to the result of the computation asynchronously, adding the prefix "Result: " to the result. The thenApplyAsync() method returns a new CompletableFuture with the transformed result, which is then processed by the thenAccept() method to print the result to the console.
+
+The thenApplyAsync() method is used to apply a transformation to the result of a computation asynchronously and return a new CompletableFuture with the transformed result. In this case, we transform the result by adding a prefix to it asynchronously, creating a new CompletableFuture with the transformed result.
+
+example of thenAcceptAsync()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 42);
+
+        future.thenAcceptAsync(result -> System.out.println("Result: " + result));
+    }
+}
+
+In the example above, we create a CompletableFuture using the supplyAsync() method, which asynchronously returns the value 42. We then use the thenAcceptAsync() method to consume the result of the computation asynchronously and print it to the console. The thenAcceptAsync() method does not return a new CompletableFuture, but instead performs the action asynchronously after the computation is complete.
+
+The thenAcceptAsync() method is used to consume the result of a computation asynchronously and perform an action on the result without returning a new CompletableFuture. In this case, we consume the result by printing it to the console asynchronously, without returning a new result.
+
+what is runAsync()  and supplyAsync() methods in CompletableFuture?
+
+CompletableFuture is a class in the Java Concurrency API that represents a future result of an asynchronous computation. It provides methods for creating and executing asynchronous tasks, handling the result when it becomes available, and chaining multiple asynchronous computations together. Two important methods in the CompletableFuture class are runAsync() and supplyAsync(), which are used to create and execute asynchronous tasks.
+
+Here are the main differences between the runAsync() and supplyAsync() methods in CompletableFuture:
+
+runAsync():
+
+The runAsync() method in the CompletableFuture class is used to create and execute an asynchronous task that does not return a result. It takes a Runnable as an argument, which represents the task to be executed asynchronously. The runAsync() method is used when a task needs to be executed asynchronously without returning a result.
+
+supplyAsync():
+
+The supplyAsync() method in the CompletableFuture class is used to create and execute an asynchronous task that returns a result. It takes a Supplier<U> as an argument, where U is the type of the result to be returned. The supplyAsync() method is used when a task needs to be executed asynchronously and return a result.
+
+In summary, the runAsync() method is used to create and execute an asynchronous task that does not return a result, while the supplyAsync() method is used to create and execute an asynchronous task that returns a result. These methods provide a way to create and execute asynchronous tasks in a flexible and efficient manner.
+
+example of runAsync()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
+            System.out.println("Task started");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task completed");
+        });
+
+        future.thenRun(() -> System.out.println("Task done"));
+    }
+}
+
+In the example above, we use the runAsync() method to create and execute an asynchronous task that does not return a result. The task sleeps for 2 seconds and then prints a message to the console. We use the thenRun() method to specify an action to be taken when the task is complete, which prints a message to the console. The runAsync() method is used to execute the task asynchronously without returning a result.
+
+The runAsync() method is used to create and execute an asynchronous task that does not return a result. In this case, we create a task that sleeps for 2 seconds and then prints a message to the console, without returning a result.
+
+example of supplyAsync()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            System.out.println("Task started");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Task completed");
+            return 42;
+        });
+
+        future.thenAccept(result -> System.out.println("Result: " + result));
+    }
+}
+
+In the example above, we use the supplyAsync() method to create and execute an asynchronous task that returns a result. The task sleeps for 2 seconds and then returns the value 42. We use the thenAccept() method to specify an action to be taken when the task is complete, which prints the result to the console. The supplyAsync() method is used to execute the task asynchronously and return a result.
+
+The supplyAsync() method is used to create and execute an asynchronous task that returns a result. In this case, we create a task that sleeps for 2 seconds and then returns the value 42, which is then processed by the thenAccept() method to print the result to the console.
+
+
+exception handling in CompletableFuture?
+
+CompletableFuture is a class in the Java Concurrency API that represents a future result of an asynchronous computation. It provides methods for handling exceptions that occur during the computation, allowing developers to recover from errors and propagate exceptions to downstream tasks. CompletableFuture supports various methods for exception handling, including exceptionally(), handle(), and whenComplete().
+
+Here are some common methods for exception handling in CompletableFuture:
+
+exceptionally():
+
+The exceptionally() method in the CompletableFuture class is used to handle exceptions that occur during the computation and recover from errors. It takes a Function<Throwable, T> as an argument, where T is the type of the result and Throwable is the type of the exception. The exceptionally() method is used to specify an action to be taken when an exception occurs during the computation, allowing developers to recover from errors and return a default value or perform error handling logic.
+
+handle():
+
+The handle() method in the CompletableFuture class is used to handle exceptions that occur during the computation and recover from errors. It takes a BiFunction<T, Throwable, U> as an argument, where T is the type of the result, U is the type of the new result, and Throwable is the type of the exception. The handle() method is used to specify an action to be taken when an exception occurs during the computation, allowing developers to recover from errors and return a new result or perform error handling logic.
+
+whenComplete():
+
+The whenComplete() method in the CompletableFuture class is used to handle exceptions that occur during the computation and perform an action when the computation is complete, either normally or exceptionally. It takes a BiConsumer<T, Throwable> as an argument, where T is the type of the result and Throwable is the type of the exception. The whenComplete() method is used to specify an action to be taken when the computation is complete, allowing developers to handle the result or exception and perform cleanup logic.
+
+In summary, CompletableFuture provides various methods for handling exceptions that occur during the computation, allowing developers to recover from errors and propagate exceptions to downstream tasks. These methods provide a way to perform error handling and recovery logic in asynchronous and non-blocking applications.
+
+example of exceptionally()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            throw new RuntimeException("An error occurred");
+        });
+
+        future.exceptionally(e -> {
+            System.out.println("Exception: " + e.getMessage());
+            return 0;
+        }).thenAccept(result -> System.out.println("Result: " + result));
+    }
+}
+
+In the example above, we create a CompletableFuture using the supplyAsync() method, which asynchronously throws a RuntimeException. We use the exceptionally() method to handle the exception that occurs during the computation and recover from the error by returning a default value of 0. The exceptionally() method allows us to specify an action to be taken when an exception occurs, in this case printing the exception message to the console and returning a default value. The result is then processed by the thenAccept() method to print the result to the console.
+
+The exceptionally() method is used to handle exceptions that occur during the computation and recover from errors. In this case, we handle the RuntimeException that occurs during the computation and return a default value of 0, allowing the computation to continue and the result to be processed.
+
+example of handle()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            throw new RuntimeException("An error occurred");
+        });
+
+        future.handle((result, exception) -> {
+            if (exception != null) {
+                System.out.println("Exception: " + exception.getMessage());
+                return 0;
+            } else {
+                return result;
+            }
+        }).thenAccept(result -> System.out.println("Result: " + result));
+    }
+}
+
+In the example above, we create a CompletableFuture using the supplyAsync() method, which asynchronously throws a RuntimeException. We use the handle() method to handle the exception that occurs during the computation and recover from the error by returning a default value of 0. The handle() method allows us to specify an action to be taken when an exception occurs, in this case printing the exception message to the console and returning a default value. The result is then processed by the thenAccept() method to print the result to the console.
+
+The handle() method is used to handle exceptions that occur during the computation and recover from errors. In this case, we handle the RuntimeException that occurs during the computation and return a default value of 0, allowing the computation to continue and the result to be processed.
+
+example of whenComplete()
+
+import java.util.concurrent.CompletableFuture;
+
+public class Main {
+    public static void main(String[] args) {
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+            throw new RuntimeException("An error occurred");
+        });
+
+        future.whenComplete((result, exception) -> {
+            if (exception != null) {
+                System.out.println("Exception: " + exception.getMessage());
+            } else {
+                System.out.println("Result: " + result);
+            }
+        });
+    }
+}
+
+In the example above, we create a CompletableFuture using the supplyAsync() method, which asynchronously throws a RuntimeException. We use the whenComplete() method to handle the exception that occurs during the computation and perform an action when the computation is complete, either normally or exceptionally. The whenComplete() method allows us to specify an action to be taken when the computation is complete, in this case printing the result or exception message to the console. The whenComplete() method is used to handle the result or exception and perform cleanup logic after the computation is complete.
+
+The whenComplete() method is used to handle exceptions that occur during the computation and perform an action when the computation is complete, either normally or exceptionally. In this case, we handle the RuntimeException that occurs during the computation and print the exception message to the console, allowing the computation to continue and the result to be processed.
+
+
